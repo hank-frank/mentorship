@@ -1,0 +1,14 @@
+.header-container {
+    width: 100vw;
+    height: fit-content;
+    background-color: rgb(85, 84, 84);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.header-container > h1 {
+    margin: 10px;
+}
