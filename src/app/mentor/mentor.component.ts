@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-mentor',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService, 
+    private router: Router) { }
 
   ngOnInit(): void {
+    let userDataRequest = async () => {
+
+      let mentorResponse = await this.apiService.mentorData();
+      let userData = await mentorResponse;
+      console.log(`MentorCOmponent Resposne: ${JSON.stringify(userData)}`);
+    }
+    userDataRequest();
   }
 
 }

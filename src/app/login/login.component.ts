@@ -21,13 +21,20 @@ export class LoginComponent implements OnInit {
   @Input() password: string;
 
   async submit() {
-    let apiResponse = await this.apiService.login(this.username, this.password);
+    if (false) {
+      this.apiService.login(this.username, this.password)
+        .then((response) => {
+          console.log(response);
+          this.router.navigate([response])
+        });
+    } else {
+      let apiResponse = await this.apiService.login(this.username, this.password);
 
-    this.response = apiResponse;
+      this.response = apiResponse;
 
-    console.log(`LoginComponent apiResponse: ${apiResponse}, this.response: ${this.response}`)
-    
-    this.router.navigate([this.response])
+      console.log(`LoginComponent apiResponse: ${apiResponse}, this.response: ${this.response}`)
+      this.router.navigate([this.response])
+    }
   }
 
 
