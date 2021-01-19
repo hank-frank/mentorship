@@ -1,0 +1,14 @@
+.login-card {
+    width: 70%;
+    margin: 48px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.login-card > input {
+    font-size: 18px;
+    width: 90%;
+    margin: 16px auto;
+}

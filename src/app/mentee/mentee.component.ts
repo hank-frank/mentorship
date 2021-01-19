@@ -19,7 +19,7 @@ export class MenteeComponent implements OnInit {
       let userData = await menteeResponse;
       console.log(`MentorCOmponent Resposne: ${JSON.stringify(userData)}`);
     }
-    userDataRequest();
+    // userDataRequest();
   }
 
 }

@@ -1,4 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+
+$tiny: 550px;
+$mobile: 768px;
+$med: 1050px;
+$lrg: 1400px;
+
+
+@mixin tiny {
+    @media (max-width: $tiny) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+
+@mixin med {
+    @media (max-width: $med) {
+        @content;
+    }
+}
+
+@mixin lrg {
+    @media (max-width: $lrg) {
+        @content;
+    }
+}
+
+
+@mixin horizontal-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.centered-horizontal {
+    @include horizontal-center;
+}
+
+.centered-vertical {
+    @include vertical-center;
+}

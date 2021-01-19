@@ -1,4 +1,7 @@
-<input [(ngModel)]="username" placeholder="username or email" />
-<input [(ngModel)]="password" placeholder="password" />
+<mat-card class="login-card">
 
-<button mat-button (click)="submit()">Login</button>
+    <input [(ngModel)]="username" placeholder="username or email" />
+    <input [(ngModel)]="password" placeholder="password" />
+    
+    <button mat-raised-button color="primary" (click)="submit()">Login</button>
+</mat-card>

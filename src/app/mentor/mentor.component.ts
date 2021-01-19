@@ -20,7 +20,7 @@ export class MentorComponent implements OnInit {
       let userData = await mentorResponse;
       console.log(`MentorCOmponent Resposne: ${JSON.stringify(userData)}`);
     }
-    userDataRequest();
+    // userDataRequest();
   }
 
 }

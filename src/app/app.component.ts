@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mentorship';
+
+  currentUserData: any[];
+
+  public storeUserData(userData) {
+    this.currentUserData = userData;
+    console.log(`parent App compoent: ${JSON.stringify(this.currentUserData)}`)
+  }
+
+  constructor() { }
 }

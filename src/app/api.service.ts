@@ -1,32 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-// interface UserSpecificData {
-//   onboarding: boolean ,
-//   matched: boolean ,
-//   training: boolean,
-//   schedule: boolean,
-//   notes: boolean,
-//   currentStreak: number,
-//   longestStreak: number,
-//   rating: number 
-// }
-// interface ServerData {
-//   userId: number,
-//   role: string,
-//   userData: UserSpecificData
-// }
+import { AppComponent } from './app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private httpClient: HttpClient, ) { }
+  constructor(private httpClient: HttpClient, private appComponent: AppComponent) { }
 
   private LOGIN_URL = "http://localhost:3000/login";
   private MENTOR_URL = "http://localhost:3000/mentor";
   private MENTEE_URL = "http://localhost:3000/mentee";
-  private DASHBOARD_URL = "http://localhost:3000/fashboard";
+  private DASHBOARD_URL = "http://localhost:3000/dashboard";
 
   public async login (username, password) {
     console.log(`apiservice username: ${username} password: ${password}`);
@@ -50,9 +35,11 @@ export class ApiService {
     } else {
       let rawResponse = await this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).toPromise();
       userData = await rawResponse;
+      console.log(`userData in apiService: `, userData);
+      this.appComponent.storeUserData(userData);
     }
 
-    return rolemap[userData.role] ? rolemap[userData.role] : "./login";
+    return rolemap[userData.userData.role] ? rolemap[userData.userData.role] : "./login";
   }
 
   public async mentorData() {
@@ -67,6 +54,13 @@ export class ApiService {
     let userData = await menteeResponse;
     console.log(`MentorResposne: ${JSON.stringify(menteeResponse)}`);
     return userData;
+  }
+
+  public async dashboardData() {
+    let dashboardResponse = await this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).toPromise();
+    let allUserData = await dashboardResponse;
+    console.log(`DashboardResposne: ${JSON.stringify(dashboardResponse)}`);
+    return allUserData;
   }
 }
 

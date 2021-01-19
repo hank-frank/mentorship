@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<p>I'm Here! </p>
+<mat-card class="pie-chart-card">
+<p>I'm a bar chart</p>
+<ngx-charts-bar-vertical
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="barChartData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+</mat-card>
+<mat-card class="pie-chart-card">
+    <p>I'm a pie chart</p>
+    <ngx-charts-pie-chart
+        [view]="view"
+        [scheme]="piecolorScheme"
+        [results]="pieChartData"
+        [gradient]="piegradient"
+        [legend]="pieshowLegend"
+        [legendPosition]="legendPosition"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+    >
+    </ngx-charts-pie-chart>
+</mat-card>
