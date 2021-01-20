@@ -10,8 +10,16 @@ import { Router } from '@angular/router';
 export class MenteeComponent implements OnInit {
 
   constructor(private apiService: ApiService, 
-    private router: Router) { }
+    private router: Router) { 
+      this.currentUserData = apiService.currentUserData;
+      this._subscription = apiService.currentUserData.subscribe((value) => { 
+        console.log('Subscribe is working Mentee: ', value);
 
+      this.currentUserData = value; 
+    });
+    }
+
+    _subscription;
   currentUserData: any[any[any]];
 
   @Input() onboarding: boolean;
@@ -22,20 +30,24 @@ export class MenteeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const getComponentData = async () => {
+    console.log(`Mentee Component userData: `, this.currentUserData);
 
-      let fetchedData = await this.apiService.retrieveUserData();
-      this.currentUserData = fetchedData;
+    // const getComponentData = async () => {
 
-      this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
-      this.matched = this.currentUserData.currentUserData.userData.matched;
-      this.introduced = this.currentUserData.currentUserData.userData.introduced;
-      this.schedule = this.currentUserData.currentUserData.userData.schedule;
-      this.smart = this.currentUserData.currentUserData.userData.smart;
-    }
+    //   let fetchedData = await this.apiService.retrieveUserData();
+    //   this.currentUserData = fetchedData;
 
-    getComponentData();
+    //   this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
+    //   this.matched = this.currentUserData.currentUserData.userData.matched;
+    //   this.introduced = this.currentUserData.currentUserData.userData.introduced;
+    //   this.schedule = this.currentUserData.currentUserData.userData.schedule;
+    //   this.smart = this.currentUserData.currentUserData.userData.smart;
+    // }
+
+    // getComponentData();
   }
+
+
 
 
 
