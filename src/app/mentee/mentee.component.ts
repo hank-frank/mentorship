@@ -12,7 +12,7 @@ export class MenteeComponent implements OnInit {
   constructor(private apiService: ApiService, 
     private router: Router) { }
 
-  currentUserData: any[any];
+  currentUserData: any[any[any]];
 
   @Input() onboarding: boolean;
   @Input() matched: boolean;
@@ -22,14 +22,19 @@ export class MenteeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.currentUserData = this.apiService.currentUserData;
-    console.log(`Mentee component User Data: `, this.currentUserData);
-    this.onboarding = this.currentUserData.userData.onboarding;
-    this.matched = this.currentUserData.userData.matched;
-    this.introduced = this.currentUserData.userData.introduced;
-    this.schedule = this.currentUserData.userData.schedule;
-    this.smart = this.currentUserData.userData.smart;
-    console.log(`Mentee component User Data: `, this.onboarding, this.matched, this.introduced, this.schedule, this.smart);
+    const getComponentData = async () => {
+
+      let fetchedData = await this.apiService.retrieveUserData();
+      this.currentUserData = fetchedData;
+
+      this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
+      this.matched = this.currentUserData.currentUserData.userData.matched;
+      this.introduced = this.currentUserData.currentUserData.userData.introduced;
+      this.schedule = this.currentUserData.currentUserData.userData.schedule;
+      this.smart = this.currentUserData.currentUserData.userData.smart;
+    }
+
+    getComponentData();
   }
 
 

@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     let userDataRequest = async () => {
-      let dashboardResponse = await this.apiService.dashboardData();
+      let dashboardResponse = await this.apiService.retrieveUserData();
       let allUserData = await dashboardResponse;
       console.log(`DashboardComponent Resposne: ${JSON.stringify(allUserData)}`);
     }

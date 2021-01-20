@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,15 +45,22 @@ export class ApiService {
       console.log(`serverResponseUserData in apiService: `, serverResponseUserData);
       this.currentUserData = serverResponseUserData;
     }
-
-    return rolemap[serverResponseUserData.userData.role] ? rolemap[serverResponseUserData.userData.role] : "./login";
+    
+    localStorage.setItem('userData', JSON.stringify(this.currentUserData));
+    // localStorage.removeItem('userData');
+    // this.headerComponent.currentUserData(this.currentUserData);
+    return rolemap[serverResponseUserData.currentUserData.userData.role] ? rolemap[serverResponseUserData.currentUserData.userData.role] : "./login";
   }
 
-  public async dashboardData() {
-    let dashboardResponse = await this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).toPromise();
-    let allUserData = await dashboardResponse;
-    console.log(`DashboardResposne: ${JSON.stringify(dashboardResponse)}`);
-    return allUserData;
+  public async retrieveUserData() {
+    if (localStorage.getItem('userData') != null) {
+      return JSON.parse(localStorage.getItem('userData'));
+    } else {
+      let dashboardResponse = await this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).toPromise();
+      let allUserData = await dashboardResponse;
+      console.log(`DashboardResposne: ${JSON.stringify(dashboardResponse)}`);
+      return allUserData;
+    }
   }
 }
 
