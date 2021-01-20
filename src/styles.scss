@@ -16,7 +16,6 @@ $mobile: 768px;
 $med: 1050px;
 $lrg: 1400px;
 
-
 @mixin tiny {
     @media (max-width: $tiny) {
         @content;
@@ -41,7 +40,6 @@ $lrg: 1400px;
         @content;
     }
 }
-
 
 @mixin horizontal-center {
     display: flex;

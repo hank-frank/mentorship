@@ -1,3 +1,33 @@
+$tiny: 550px;
+$mobile: 768px;
+$med: 1050px;
+$lrg: 1400px;
+
+@mixin tiny {
+    @media (max-width: $tiny) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+
+@mixin med {
+    @media (max-width: $med) {
+        @content;
+    }
+}
+
+@mixin lrg {
+    @media (max-width: $lrg) {
+        @content;
+    }
+}
+
 .header-container {
     width: 100vw;
     height: fit-content;
@@ -7,6 +37,10 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 .header-container > h1 {

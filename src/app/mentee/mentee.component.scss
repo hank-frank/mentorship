@@ -1,0 +1,72 @@
+$tiny: 550px;
+$mobile: 768px;
+$med: 1050px;
+$lrg: 1400px;
+
+@mixin tiny {
+    @media (max-width: $tiny) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin med {
+    @media (max-width: $med) {
+        @content;
+    }
+}
+
+@mixin lrg {
+    @media (max-width: $lrg) {
+        @content;
+    }
+}
+
+$image-size: 140px;
+
+.mentee-card {
+    width: 80%;
+    margin: 36px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.mentee-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5%;
+    margin-bottom: 32px;
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.user-image {
+    width: $image-size;
+    height: $image-size;
+    border-radius: 50%;
+    background-color: grey;
+    margin-right: 16px;
+}
+
+.name-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name-title > h4 {
+    font-size: 32px;
+}
+
+.name-title > p  {
+    font-size: 22px;
+    
+}

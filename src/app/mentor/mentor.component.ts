@@ -12,15 +12,11 @@ export class MentorComponent implements OnInit {
 
   constructor(private apiService: ApiService, 
     private router: Router) { }
+    currentUserData: any[];
 
   ngOnInit(): void {
-    let userDataRequest = async () => {
-
-      let mentorResponse = await this.apiService.mentorData();
-      let userData = await mentorResponse;
-      console.log(`MentorCOmponent Resposne: ${JSON.stringify(userData)}`);
-    }
-    // userDataRequest();
+    this.currentUserData = this.apiService.currentUserData;
+    console.log(`Mentor component User Data: `, this.currentUserData);
   }
 
 }
