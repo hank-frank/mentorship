@@ -9,3 +9,17 @@
     <app-pie-chart [incommingPieChartData]="menteePieChartData"></app-pie-chart>
 </div>
 
+<mat-card class='table-card'>
+    <table>
+        <thead>
+            <tr>
+                <td>User Name</td> <td>Is finished?</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of allUserData">
+                <td>{{e.userData.name}}</td> <td>{{e.userData.isFinished}}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

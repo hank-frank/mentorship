@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Input } from '@angular/core';
 // import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ApiService } from '../api.service';
 import { BarChartData } from  './bar-chart/bar-chart-data.model'
@@ -13,8 +13,21 @@ import { PieChartData } from  './pie-chart/pie-chart-data.model'
 
 export class DashboardComponent implements OnInit {
   allUserData: any[];
+  // constructor(private apiService: ApiService) {
+  // }
+
   constructor(private apiService: ApiService) {
+    this.currentUserData = apiService.getUserData;
+    this._subscription = apiService.getUserData().subscribe((data) => { 
+      console.log('Subscribe is working Dashboard: ', data);
+      this.currentUserData = data;    
+      this.allUserData = data.allUsers;
+    }, error => {console.log(`subscription error: `, error)});
   }
+  
+  _subscription;
+  @Input() currentUserData: any[any[any]];
+  
 
 mentorBarChartData: BarChartData = {
   barValues: [
@@ -103,11 +116,7 @@ menteePieChartData: PieChartData = {
 }
 
   ngOnInit(): void {
-    let userDataRequest = async () => {
-      let dashboardResponse = await this.apiService.retrieveUserData();
-      let allUserData = await dashboardResponse;
-      // console.log(`DashboardComponent Resposne: ${JSON.stringify(allUserData)}`);
-    }
-    userDataRequest();
+    this.apiService.retrieveUserData();
+    console.log(`this.currentUserData:`,this.currentUserData);
   }
 }
