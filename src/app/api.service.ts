@@ -53,7 +53,7 @@ export class ApiService {
           if (data.currentUserData.userData.userId != 0) {
             this.authStatusListener.next(true);
             this.isAuthenticated = true;
-            console.log(`in login: `, data.currentUserData.userData.role)
+            console.log(`in login: `, data.currentUserData.userData.role);
             this.router.navigate([rolemap[data.currentUserData.userData.role] ? rolemap[data.currentUserData.userData.role] : "./login"]);
           }
         });

@@ -14,13 +14,13 @@ export class HeaderComponent implements OnInit {
       // console.log('Subscribe is working Header: ', data);
       this.currentUserData = data;
       // this.updateRole();
-      console.log(this.currentUserRole);
+      // console.log(this.currentUserRole);
     }, error => {console.log(`subscription error: `, error)});
   }
   
   _subscription;
   @Input() currentUserData: any[any];
-  // @Input() currentUserRole: string;
+  @Input() currentUserRole: string;
 
   // updateRole() {
   //   console.log(`in update method`);

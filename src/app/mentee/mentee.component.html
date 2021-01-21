@@ -2,16 +2,37 @@
     <div class="mentee-card-header">
         <div class="user-image"></div>
         <div class="name-title">
-            <h4>Henry</h4>
-            <p>I do stuff</p>
+            <h4 mat-card-title>Henry</h4>
+            <p mat-card-subtitle>I do stuff</p>
         </div>
     </div>
-
-    <input [(ngModel)]="onboarding" type="checkbox"/>
-    <input [(ngModel)]="matched" type="checkbox"/>
-    <input [(ngModel)]="introduced" type="checkbox"/>
-    <input [(ngModel)]="schedule" type="checkbox"/>
-    <input [(ngModel)]="smart" type="checkbox"/>
+    <!-- <label className="toggle-switch">
+        <input type="checkbox" onChange={() => checkToggle()} checked={ toggleState }/>
+        <span className="slider round"></span>
+    </label> -->
+    <div class="info-container">
+        <label for="onboarding" class="toggle-switch">
+            <input [(ngModel)]="onboarding" type="checkbox" id="onboarding"/>
+            Onboarding
+        </label>
+        <span class="slider round"></span>
+    </div>
+    <div class="info-container">
+        <input [(ngModel)]="matched" type="checkbox" id="matched"/>
+        <label for="matched">Matched</label>
+    </div>
+    <div class="info-container">
+        <input [(ngModel)]="introduced" type="checkbox" id="introduced"/>
+        <label for="introduced">Introduced</label>
+    </div>
+    <div class="info-container">
+        <input [(ngModel)]="schedule" type="checkbox" id="schedule"/>
+        <label for="schedule">Schedule</label>
+    </div>
+    <div class="info-container">
+        <input [(ngModel)]="smart" type="checkbox" id="smart"/>
+        <label for="smart">Smart</label>
+    </div>
 
 </mat-card>
 
