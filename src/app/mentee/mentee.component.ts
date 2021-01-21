@@ -38,6 +38,4 @@ export class MenteeComponent implements OnInit {
     this.smart = this.currentUserData.currentUserData.userData.smart;
   }
 
-  
-
 };
