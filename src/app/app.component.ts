@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
     this._subscription = apiService.getUserData().subscribe((data) => { 
-      console.log('Subscribe is working Header: ', data);
+      // console.log('Subscribe is working App: ', data);
       this.currentUserData = data;    
     }, error => {console.log(`subscription error: `, error)});
   }

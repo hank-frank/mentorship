@@ -10,31 +10,26 @@ export class HeaderComponent implements OnInit {
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
-    this._subscription = apiService.getUserData().subscribe((data) => { 
+    apiService.getUserData().subscribe((data) => { 
       // console.log('Subscribe is working Header: ', data);
       this.currentUserData = data;
-      // this.updateRole();
-      // console.log(this.currentUserRole);
     }, error => {console.log(`subscription error: `, error)});
+    this.currentUserRole = apiService.getUserRole;
+    apiService.getUserRole().subscribe((role) => {
+      this.currentUserRole = role;
+      console.log(`role: `, this.currentUserRole);
+    });
   }
   
-  _subscription;
   @Input() currentUserData: any[any];
-  @Input() currentUserRole: string;
-
-  // updateRole() {
-  //   console.log(`in update method`);
-  //   this.apiService.getUserRole().subscribe((role) => {
-  //     this.currentUserRole = role;
-  //   });
-  // }
+  @Input() currentUserRole: any;
 
   ngOnInit(): void {
     this.apiService.retrieveUserData();
   }
 
   testClick() {
-    console.log(`clickevent: `, this.currentUserData);
+    console.log(`clickevent: `, this.currentUserRole);
   }
 
   //Behavior subject of logged in or not, if im logged in check role.

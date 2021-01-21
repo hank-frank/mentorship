@@ -52,6 +52,8 @@ export class ApiService {
       return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
           if (data.currentUserData.userData.userId != 0) {
             this.authStatusListener.next(true);
+            this.userRole.next(data.currentUserData.userData.role);
+
             this.isAuthenticated = true;
             console.log(`in login: `, data.currentUserData.userData.role);
             this.router.navigate([rolemap[data.currentUserData.userData.role] ? rolemap[data.currentUserData.userData.role] : "./login"]);
@@ -72,11 +74,16 @@ export class ApiService {
     if (localStorage.getItem('userData') != null) {
       //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
       this.currentUserData.next(JSON.parse(localStorage.getItem('userData')));
+      this.userRole.next(JSON.parse(localStorage.getItem('userData')).currentUserData.userData.role);
+
       return JSON.parse(localStorage.getItem('userData'));
     } else {
       //this call counts on a valid user token as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
-      return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data) => {
+      return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data: any) => {
         this.currentUserData.next(data);
+        this.userRole.next(data.currentUserData.userData.role);
+
+        
         localStorage.setItem('userData', JSON.stringify(data));
       })
     }
