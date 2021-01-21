@@ -9,19 +9,6 @@ import { Router } from '@angular/router';
 })
 export class MenteeComponent implements OnInit {
 
-  constructor(private apiService: ApiService, 
-    private router: Router) { 
-      this.currentUserData = apiService.currentUserData;
-      this._subscription = apiService.currentUserData.subscribe((value) => { 
-        console.log('Subscribe is working Mentee: ', value);
-
-      this.currentUserData = value; 
-    });
-    }
-
-    _subscription;
-  currentUserData: any[any[any]];
-
   @Input() onboarding: boolean;
   @Input() matched: boolean;
   @Input() introduced: boolean;
@@ -29,29 +16,28 @@ export class MenteeComponent implements OnInit {
   @Input() smart: boolean;
 
 
+  constructor(private apiService: ApiService) {
+    this.currentUserData = apiService.getUserData;
+    this._subscription = apiService.getUserData().subscribe((data) => { 
+      console.log('Subscribe is working Mentee: ', data);
+      this.currentUserData = data;    
+    }, error => {console.log(`subscription error: `, error)});
+  }
+  
+  _subscription;
+  @Input() currentUserData: any[any[any]];
+  
+  currentUserRole: string;
+
   ngOnInit(): void {
-    console.log(`Mentee Component userData: `, this.currentUserData);
-
-    // const getComponentData = async () => {
-
-    //   let fetchedData = await this.apiService.retrieveUserData();
-    //   this.currentUserData = fetchedData;
-
-    //   this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
-    //   this.matched = this.currentUserData.currentUserData.userData.matched;
-    //   this.introduced = this.currentUserData.currentUserData.userData.introduced;
-    //   this.schedule = this.currentUserData.currentUserData.userData.schedule;
-    //   this.smart = this.currentUserData.currentUserData.userData.smart;
-    // }
-
-    // getComponentData();
+    this.apiService.retrieveUserData();
+    this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
+    this.matched = this.currentUserData.currentUserData.userData.matched;
+    this.introduced = this.currentUserData.currentUserData.userData.introduced;
+    this.schedule = this.currentUserData.currentUserData.userData.schedule;
+    this.smart = this.currentUserData.currentUserData.userData.smart;
   }
 
+  
 
-
-
-
-
-
-
-}
+};

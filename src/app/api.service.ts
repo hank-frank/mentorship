@@ -1,6 +1,6 @@
 import { Injectable,  EventEmitter, Output  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { AppComponent } from './app.component';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 
@@ -8,20 +8,38 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private httpClient: HttpClient) { }
-
   private LOGIN_URL = "http://localhost:3000/login";
   private MENTOR_URL = "http://localhost:3000/mentor";
   private MENTEE_URL = "http://localhost:3000/mentee";
   private DASHBOARD_URL = "http://localhost:3000/dashboard";
+  
+  private currentUserData: any = new Subject<any>();
+  private authStatusListener = new Subject<boolean>();
+  private isAuthenticated = false;
+  private userRole = new Subject<string>();
+  
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  public currentUserData: any = new Subject<any>();
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+  public getUserData() {
+    return this.currentUserData.asObservable();
+  }
+
+  public getUserRole() {
+    return this.userRole.asObservable();
+  }
 
   public async login (username, password) {
     console.log(`apiservice username: ${username} password: ${password}`);
 
     let serverResponseUserData : any;
-    let mentorResponse: any;
 
     let rolemap = {
       admin: "./dashboard", 
@@ -29,12 +47,15 @@ export class ApiService {
       mentee: "./mentee" 
     };
 
-    if (false) {
-      return this.httpClient.get(this.LOGIN_URL).subscribe((data) => {
-          console.log(`apiService response: ${JSON.stringify(data)}`);
-          serverResponseUserData = data;
-          // return "./dashboard";
-          return rolemap[serverResponseUserData.userData.role] ? rolemap[serverResponseUserData.userData.role] : "./login";
+    if (true) {
+      //Use this subscribe instead of the async await
+      return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
+          if (data.currentUserData.userData.userId != 0) {
+            this.authStatusListener.next(true);
+            this.isAuthenticated = true;
+            console.log(`in login: `, data.currentUserData.userData.role)
+            this.router.navigate([rolemap[data.currentUserData.userData.role] ? rolemap[data.currentUserData.userData.role] : "./login"]);
+          }
         });
     } else {
       let rawResponse = await this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).toPromise();
@@ -49,16 +70,21 @@ export class ApiService {
 
   public async retrieveUserData() {
     if (localStorage.getItem('userData') != null) {
+      //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
       this.currentUserData.next(JSON.parse(localStorage.getItem('userData')));
       return JSON.parse(localStorage.getItem('userData'));
     } else {
-      let dashboardResponse = await this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).toPromise();
-      let allUserData = await dashboardResponse;
-      console.log(`DashboardResposne: ${JSON.stringify(dashboardResponse)}`);
-
-      return allUserData;
+      //this call counts on a valid user token as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
+      return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data) => {
+        this.currentUserData.next(data);
+        localStorage.setItem('userData', JSON.stringify(data));
+      })
     }
   }
+
+  logout() {
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
+    this.router.navigate(['/login']);
+  }
 }
-
-

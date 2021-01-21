@@ -21,12 +21,9 @@ export class LoginComponent implements OnInit {
   @Input() password: string;
 
   async submit() {
-    if (false) {
+    if (true) {
       this.apiService.login(this.username, this.password)
-        .then((response) => {
-          console.log(response);
-          this.router.navigate([response])
-        });
+        
     } else {
       let apiResponse = await this.apiService.login(this.username, this.password);
 

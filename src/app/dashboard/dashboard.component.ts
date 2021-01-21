@@ -88,6 +88,7 @@ var pieChartSingle = [
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
   allUserData : any[];
   pieChartData: any[];
@@ -98,14 +99,13 @@ export class DashboardComponent implements OnInit {
 
   }
   
-
   ngOnInit(): void {
     let userDataRequest = async () => {
       let dashboardResponse = await this.apiService.retrieveUserData();
       let allUserData = await dashboardResponse;
       console.log(`DashboardComponent Resposne: ${JSON.stringify(allUserData)}`);
     }
-    // userDataRequest();
+    userDataRequest();
   }
 
   view: any[] = [700, 400];

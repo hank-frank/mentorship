@@ -6,24 +6,37 @@ import { ApiService } from '../api.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnChanges,OnInit {
+export class HeaderComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
-  @Input() currentUserData: any;
-  currentUserRole: string;
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    //update userData in here, userData will need to be passed into this component from app? 
+  constructor(private apiService: ApiService) {
+    this.currentUserData = apiService.getUserData;
+    this._subscription = apiService.getUserData().subscribe((data) => { 
+      // console.log('Subscribe is working Header: ', data);
+      this.currentUserData = data;
+      // this.updateRole();
+      console.log(this.currentUserRole);
+    }, error => {console.log(`subscription error: `, error)});
   }
+  
+  _subscription;
+  @Input() currentUserData: any[any];
+  // @Input() currentUserRole: string;
+
+  // updateRole() {
+  //   console.log(`in update method`);
+  //   this.apiService.getUserRole().subscribe((role) => {
+  //     this.currentUserRole = role;
+  //   });
+  // }
 
   ngOnInit(): void {
-    console.log(`ngOnInit userData: `, this.currentUserData);
-    this.currentUserRole = this.currentUserData.currentUserData.userData.role;
-
+    this.apiService.retrieveUserData();
   }
 
   testClick() {
     console.log(`clickevent: `, this.currentUserData);
   }
+
+  //Behavior subject of logged in or not, if im logged in check role.
 
 }
