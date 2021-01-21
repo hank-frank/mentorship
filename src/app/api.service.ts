@@ -16,7 +16,8 @@ export class ApiService {
   private currentUserData: any = new Subject<any>();
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated = false;
-  private userRole = new Subject<string>();
+  private userRole = new Subject<string>(); // for header
+  private key='userData';
   
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -47,37 +48,33 @@ export class ApiService {
       mentee: "./mentee" 
     };
 
-    if (true) {
-      //Use this subscribe instead of the async await
-      return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
-          if (data.currentUserData.userData.userId != 0) {
-            this.authStatusListener.next(true);
-            this.isAuthenticated = true;
-            console.log(`in login: `, data.currentUserData.userData.role);
-            this.router.navigate([rolemap[data.currentUserData.userData.role] ? rolemap[data.currentUserData.userData.role] : "./login"]);
-          }
-        });
-    } else {
-      let rawResponse = await this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).toPromise();
-      serverResponseUserData = await rawResponse;
-      localStorage.setItem('userData', JSON.stringify(serverResponseUserData));
-      this.currentUserData.next(serverResponseUserData);
-    }
-    // localStorage.removeItem('userData');
-    // this.headerComponent.currentUserData(this.currentUserData);
-    return rolemap[serverResponseUserData.currentUserData.userData.role] ? rolemap[serverResponseUserData.currentUserData.userData.role] : "./login";
+    //Use this subscribe instead of the async await
+    return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
+      if (data.currentUserData.userData.userId != 0) {
+        this.authStatusListener.next(true);
+        this.isAuthenticated = true;
+        console.log(`in login: data: `, data);
+
+        localStorage.setItem(this.key,JSON.stringify(data));
+
+        this.currentUserData.next(data);
+        console.log(`in login: role: `, data.currentUserData.userData.role);
+
+        this.router.navigate([rolemap[data.currentUserData.userData.role] ? rolemap[data.currentUserData.userData.role] : "./login"]);
+      }
+    });
   }
 
   public async retrieveUserData() {
-    if (localStorage.getItem('userData') != null) {
+    if (localStorage.getItem(this.key) != null) {
       //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
-      this.currentUserData.next(JSON.parse(localStorage.getItem('userData')));
-      return JSON.parse(localStorage.getItem('userData'));
+      this.currentUserData.next(JSON.parse(localStorage.getItem(this.key)));
+      return JSON.parse(localStorage.getItem(this.key));
     } else {
       //this call counts on a valid user token as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
       return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data) => {
         this.currentUserData.next(data);
-        localStorage.setItem('userData', JSON.stringify(data));
+        localStorage.setItem(this.key, JSON.stringify(data));
       })
     }
   }
