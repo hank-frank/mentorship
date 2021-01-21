@@ -13,8 +13,8 @@ import { MentorComponent } from './mentor/mentor.component';
 import { MenteeComponent } from './mentee/mentee.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { PieChartComponent } from './dashboard/pie-chart/pie-chart.component';
+import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [

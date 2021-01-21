@@ -1,9 +1,9 @@
 <mat-card class="bar-chart-card">
-    <p>Mentors</p>
+    <p class="chart-title">{{title}}</p>
     <ngx-charts-bar-vertical
         [view]="view"
         [scheme]="colorScheme"
-        [results]="pairs"
+        [results]="barValues"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"

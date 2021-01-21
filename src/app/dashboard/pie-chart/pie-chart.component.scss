@@ -27,12 +27,19 @@ $lrg: 1400px;
     }
 }
 
-.bar-chart-card {
-    width: 80%;
-    margin: 16px auto;
-    height: 200px;
-    min-height: 400px;
-    @include tiny{
-        height: 500px;
+.pie-chart-card {
+    width: 40vw;
+    margin: 16px;
+    height: 540px;
+    // min-height: 400px;
+    @include mobile {
+        width: 85%;
+        margin: 16px auto;
     }
+}
+
+.chart-title {
+    font-size: 24px;
+    margin: 6px auto;
+    text-align: center;
 }

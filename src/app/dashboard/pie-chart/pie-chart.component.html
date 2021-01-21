@@ -1,8 +1,9 @@
 <mat-card class="pie-chart-card">
-    <p>Mentor</p>
+    <p class="chart-title">{{title}}</p>
     <ngx-charts-pie-chart
+        [view]="view"
         [scheme]="piecolorScheme"
-        [results]="pieChartData"
+        [results]="pieValues"
         [gradient]="piegradient"
         [legend]="pieshowLegend"
         [legendPosition]="legendPosition"
@@ -14,5 +15,3 @@
     >
     </ngx-charts-pie-chart>
 </mat-card>
-
-<!-- [view]="view" -->
