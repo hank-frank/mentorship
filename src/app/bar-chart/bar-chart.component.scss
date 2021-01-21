@@ -1,0 +1,38 @@
+$tiny: 550px;
+$mobile: 768px;
+$med: 1050px;
+$lrg: 1400px;
+
+@mixin tiny {
+    @media (max-width: $tiny) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin med {
+    @media (max-width: $med) {
+        @content;
+    }
+}
+
+@mixin lrg {
+    @media (max-width: $lrg) {
+        @content;
+    }
+}
+
+.bar-chart-card {
+    width: 80%;
+    margin: 16px auto;
+    height: 200px;
+    min-height: 400px;
+    @include tiny{
+        height: 500px;
+    }
+}
