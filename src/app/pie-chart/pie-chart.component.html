@@ -1,0 +1,18 @@
+<mat-card class="pie-chart-card">
+    <p>Mentor</p>
+    <ngx-charts-pie-chart
+        [scheme]="piecolorScheme"
+        [results]="pieChartData"
+        [gradient]="piegradient"
+        [legend]="pieshowLegend"
+        [legendPosition]="legendPosition"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+    >
+    </ngx-charts-pie-chart>
+</mat-card>
+
+<!-- [view]="view" -->
