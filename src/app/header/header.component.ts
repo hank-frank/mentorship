@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
       // console.log('Subscribe is working Header: ', data);
       this.currentUserData = data;
     }, error => {console.log(`subscription error: `, error)});
+    
     this.currentUserRole = apiService.getUserRole;
     apiService.getUserRole().subscribe((role) => {
       this.currentUserRole = role;

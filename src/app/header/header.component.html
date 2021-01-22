@@ -2,18 +2,32 @@
 
     <h1>Mentorship</h1>
     <button mat-button routerLink="/">Home</button>
+    <!-- if logged in log in, if logged out log out -->
     <button mat-button routerLink="/login">Login</button>
-    <button mat-button routerLink="/dashboard">Dashboard</button>
-    <!-- If the 'current user role' value is set up as a value that is subscribed to then this should work in real time -->
-    <div *ngIf="currentUserRole === 'mentor'; else mentoreElse">
-        <button mat-button routerLink="/mentor">Mentor</button>
+
+    <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
+        <button mat-button routerLink="/dashboard">Dashboard</button>
     </div>
+    <ng-template #dashboardElse>
+        <p mat-button class="dead-link">Dashboard</p>
+    </ng-template>
+
+    <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
+        <mat-button class="link-button" routerLink="/mentor">Mentor</mat-button>
+    </div>
+    <!-- <ng-template #mentoreElseIf>
+        <mat-button class="link-button" routerLink="/mentor">MentorAdmin</mat-button>
+    </ng-template> -->
     <ng-template #mentoreElse>
         <p mat-button class="dead-link">Mentor</p>
     </ng-template>
-    <button mat-button routerLink="/mentor">Mentor2</button>
 
-    <button mat-button routerLink="/mentee">Mentee</button>
+    <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
+        <button mat-button routerLink="/mentee">Mentee</button>
+    </div>
+    <ng-template #menteeeElse>
+        <p mat-button class="dead-link">Mentee</p>
+    </ng-template>
 
     <button (click)="testClick()">Test Button</button>
 </div>

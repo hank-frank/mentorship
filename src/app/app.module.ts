@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PieChartComponent } from './dashboard/pie-chart/pie-chart.component';
 import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
+import { TableComponent } from './dashboard/table/table.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
     MenteeComponent,
     HeaderComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

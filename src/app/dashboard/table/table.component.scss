@@ -1,0 +1,29 @@
+
+.table-card{
+    width: fit-content;
+    margin: 16px auto 32px auto;
+    padding: 16px 32px;
+}
+
+table {
+    margin: 6px auto;
+}
+
+.table-title {
+    font-size: 24px;
+    margin: 6px auto;
+    text-align: center;
+}
+
+td {
+    font-size: 18px;
+    padding: 6px;
+}
+
+tr:nth-of-type(even) {
+    background-color: rgb(224, 224, 238);
+}
+
+tr:nth-of-type(odd) {
+    background-color: rgb(224, 224, 225);
+}

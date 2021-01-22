@@ -1,0 +1,16 @@
+<mat-card class='table-card'>
+    <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
+    <table>
+        <thead>
+            <tr>
+                <td *ngFor="let header of allUserData.columnHeaders">{{ header }}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUserData">
+                <td>{{ user.userData.name }}</td>
+                <td>{{ user.userData.isFinished }}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>
