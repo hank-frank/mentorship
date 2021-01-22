@@ -8,9 +8,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of allUserData">
-                <td>{{ user.userData.name }}</td>
-                <td>{{ user.userData.isFinished }}</td>
+                <td [ngStyle]="user.tableRowColor" >{{ user.userData.name }}</td>
+                <td [ngStyle]="user.tableRowColor" >{{ user.userData.isFinished }}</td>
             </tr>
         </tbody>
     </table>
+</mat-card>
+
+<mat-card class="table-card">
+    <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
+    <ngx-datatable [rows]="tableRows" [columns]="tableColumns" class="material"></ngx-datatable>
 </mat-card>

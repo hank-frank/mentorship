@@ -3,34 +3,69 @@
         <div class="user-image"></div>
         <div class="name-title">
             <h4 mat-card-title>Henry</h4>
-            <p mat-card-subtitle>I do stuff</p>
+            <p mat-card-subtitle>Apprentice</p>
+            <p mat-card-subtitle>Software Engineer</p>
+
         </div>
     </div>
-    
+
     <div class="info-container">
-        <label for="onboarding" class="switch">
-            <input [(ngModel)]="onboarding" type="checkbox" id="onboarding"/>
-            Onboarding
-        </label>
-        <span class="slider round"></span>
+        <form action="#">
+            <div class="switch">
+                <input [(ngModel)]="onboarding" id="onboarding" name="onboarding" type="checkbox" class="switch-input" />
+                <label for="onboarding" class="switch-label">Switch</label>
+            </div>
+        </form>
+        <p class="check-text">Completed onboarding survey</p>
     </div>
     <div class="info-container">
-        <input [(ngModel)]="matched" type="checkbox" id="matched"/>
-        <label for="matched">Matched</label>
+        <form action="#">
+            <div class="switch">
+                <input [(ngModel)]="matched"  id="matched" name="matched" type="checkbox" class="switch-input" />
+                <label for="matched" class="switch-label">Switch</label>
+            </div>
+        </form>
+        <p class="check-text">Matched with a Mentor</p>
     </div>
     <div class="info-container">
-        <input [(ngModel)]="introduced" type="checkbox" id="introduced"/>
-        <label for="introduced">Introduced</label>
+        <form action="#">
+            <div class="switch">
+                <input [(ngModel)]="introduced"  id="introduced" name="introduced" type="checkbox" class="switch-input" />
+                <label for="introduced" class="switch-label">Switch</label>
+            </div>
+        </form>
+        <p class="check-text">Introduced yourself</p>
     </div>
     <div class="info-container">
-        <input [(ngModel)]="schedule" type="checkbox" id="schedule"/>
-        <label for="schedule">Schedule</label>
+        <form action="#">
+            <div class="switch">
+                <input [(ngModel)]="schedule"  id="schedule" name="schedule" type="checkbox" class="switch-input" />
+                <label for="schedule" class="switch-label">Switch</label>
+            </div>
+        </form>
+        <p class="check-text">Scheduled a session</p>
     </div>
     <div class="info-container">
-        <input [(ngModel)]="smart" type="checkbox" id="smart"/>
-        <label for="smart">Smart</label>
+        <form action="#">
+            <div class="switch">
+                <input [(ngModel)]="smart"  id="smart" name="smart" type="checkbox" class="switch-input" />
+                <label for="smart" class="switch-label">Switch</label>
+            </div>
+        </form>
+        <p class="check-text">SMART Goals</p>
     </div>
 
+    <div class="info-container">
+        <p class="user-text"><span class="user-text-numbers">{{sessions}}/{{sessionsPossible}}</span>Sessions</p>
+    </div>
+    <div class="info-container">
+        <p class="user-text"><span class="user-text-numbers">{{lifetimeSessions}}/{{lifetimeSessionsPossible}}</span>Lifetime Sessions</p>
+    </div>
+    <div class="info-container">
+        <p class="user-text"><span class="user-text-numbers">{{lifetimeSessions}}</span>Rating</p>
+    </div>
 </mat-card>
+
+
 
 

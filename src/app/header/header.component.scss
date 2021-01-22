@@ -45,14 +45,22 @@ $lrg: 1400px;
 
 .header-container > h1 {
     margin: 10px;
+    @include mobile {
+        margin: 0 auto;
+    }
 }
+
 .dead-link {
     opacity: 0.5;
-    margin: auto 10px;
+    margin: 0 10px;
 }
 
 .link-button  {
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: 0 8px;
     height: 60px;
+
+    @include mobile {
+        left: 50%;
+        transform: translateX(-50%)
+    }
 }

@@ -14,6 +14,11 @@ export class MenteeComponent implements OnInit {
   @Input() introduced: boolean;
   @Input() schedule: boolean;
   @Input() smart: boolean;
+  @Input() sessions: number;
+  @Input() sessionsPossible: number;
+  @Input() lifetimeSessions: number;
+  @Input() lifetimeSessionsPossible: number;
+  @Input() rating: number;
 
 
   constructor(private apiService: ApiService) {
@@ -36,6 +41,11 @@ export class MenteeComponent implements OnInit {
     this.introduced = this.currentUserData.currentUserData.userData.introduced;
     this.schedule = this.currentUserData.currentUserData.userData.schedule;
     this.smart = this.currentUserData.currentUserData.userData.smart;
+    this.sessions = this.currentUserData.currentUserData.userData.sessions;
+    this.sessionsPossible = this.currentUserData.currentUserData.userData.sessionsPossible;
+    this.lifetimeSessions = this.currentUserData.currentUserData.userData.lifetimeSessions;
+    this.lifetimeSessionsPossible = this.currentUserData.currentUserData.userData.lifetimeSessionsPossible;
+    this.rating = this.currentUserData.currentUserData.userData.rating;
   }
 
 };

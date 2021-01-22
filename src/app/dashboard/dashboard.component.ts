@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
 
     this.allUserData.columnHeaders = ["Name", "Is Finished"];
     this.allUserData.tableTitle = "All Users";
+    this.allUserData.rowColors = ['#264653', '#E76F51'];
+    
   }
 
   mentorBarChartData: BarChartData = {

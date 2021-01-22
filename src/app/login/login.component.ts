@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,8 @@ export class LoginComponent implements OnInit {
   response : any = {};
 
   constructor(private apiService: ApiService, 
-    private router: Router) { }
+    // private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -21,17 +22,7 @@ export class LoginComponent implements OnInit {
   @Input() password: string;
 
   async submit() {
-    if (true) {
-      this.apiService.login(this.username, this.password)
-        
-    } else {
-      let apiResponse = await this.apiService.login(this.username, this.password);
-
-      this.response = apiResponse;
-
-      console.log(`LoginComponent apiResponse: ${apiResponse}, this.response: ${this.response}`)
-      this.router.navigate([this.response])
-    }
+      this.apiService.login(this.username, this.password);
   }
 
 

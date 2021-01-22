@@ -1,33 +1,35 @@
 <div class="header-container">
 
-    <h1>Mentorship</h1>
-    <button mat-button routerLink="/">Home</button>
+    <h1 class="header-title">Mentorship</h1>
+    <button mat-button class="link-button" routerLink="/">Home</button>
     <!-- if logged in log in, if logged out log out -->
-    <button mat-button routerLink="/login">Login</button>
-
+    <div *ngIf="isAuthenticated === true; else loginElse">
+        <button mat-button class="link-button" (click)="logout()">Logout</button>
+    </div>
+    <ng-template #loginElse>
+        <button mat-button class="link-button" routerLink="/login">Login</button>
+    </ng-template>
     <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
-        <button mat-button routerLink="/dashboard">Dashboard</button>
+        <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
     </div>
     <ng-template #dashboardElse>
-        <p mat-button class="dead-link">Dashboard</p>
+        <button mat-button class="link-button dead-link">Dashboard</button>
     </ng-template>
 
     <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
-        <mat-button class="link-button" routerLink="/mentor">Mentor</mat-button>
+        <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
     </div>
-    <!-- <ng-template #mentoreElseIf>
-        <mat-button class="link-button" routerLink="/mentor">MentorAdmin</mat-button>
-    </ng-template> -->
     <ng-template #mentoreElse>
-        <p mat-button class="dead-link">Mentor</p>
+        <button mat-button  class="link-button dead-link">Mentor</button>
     </ng-template>
 
     <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
-        <button mat-button routerLink="/mentee">Mentee</button>
+        <button mat-button class="link-button" outerLink="/mentee">Mentee</button>
     </div>
     <ng-template #menteeeElse>
-        <p mat-button class="dead-link">Mentee</p>
+        <button mat-button class="link-button dead-link">Mentee</button>
     </ng-template>
 
     <button (click)="testClick()">Test Button</button>
+    <button mat-button (click)="logout()">Logout</button>
 </div>

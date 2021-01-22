@@ -8,6 +8,8 @@ import { ApiService } from './api.service';
 })
 export class AppComponent implements OnInit {
   title = 'mentorship';
+  _subscription;
+  currentUserData: any[any];
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
@@ -16,11 +18,10 @@ export class AppComponent implements OnInit {
       this.currentUserData = data;    
     }, error => {console.log(`subscription error: `, error)});
   }
-  
-  _subscription;
-  currentUserData: any[any];
 
   ngOnInit(): void {
-    this.apiService.retrieveUserData();
+    if (this.apiService.getIsAuth()){
+      this.apiService.retrieveUserData();
+    }
   }
 }

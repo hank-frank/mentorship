@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,7 +37,8 @@ import { TableComponent } from './dashboard/table/table.component';
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgxDatatableModule
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]
