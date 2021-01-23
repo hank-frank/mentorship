@@ -43,8 +43,6 @@ export class BarChartComponent implements OnInit {
     this.colorScheme = {
         domain: this.colors
     }
-    console.log(this.colors, this.incomingBarChartData.colors);
-
     this.onResize({});
   }
 

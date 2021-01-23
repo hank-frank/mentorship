@@ -1,45 +1,19 @@
-$tiny: 550px;
-$mobile: 768px;
-$med: 1050px;
-$lrg: 1400px;
-
-@mixin tiny {
-    @media (max-width: $tiny) {
-        @content;
-    }
-}
-
-@mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
-}
-
-
-@mixin med {
-    @media (max-width: $med) {
-        @content;
-    }
-}
-
-@mixin lrg {
-    @media (max-width: $lrg) {
-        @content;
-    }
-}
+@import '../../global.scss';
 
 .header-container {
     width: 100vw;
     height: fit-content;
-    background-color: rgb(85, 84, 84);
+    // background-color: $accent;
     color: white;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
+    // display: block;
 
     @include mobile {
         flex-direction: column;
+        display: none;
     }
 }
 
@@ -62,5 +36,32 @@ $lrg: 1400px;
     @include mobile {
         left: 50%;
         transform: translateX(-50%)
+    }
+}
+
+.hamburger-icon {
+    display: none;
+    @include mobile {
+        display: block
+    }
+}
+
+.header-spacer {
+    flex: 1 1 auto;
+}
+
+.sidenav-container {
+    flex: 1;
+    .sidenav {
+        min-width: 240px;
+        a {
+            display: block;
+            padding: 6px 24px;
+            width: 100%;
+            text-align: left;
+        }
+    }
+    main {
+        padding: 18px 24px;
     }
 }

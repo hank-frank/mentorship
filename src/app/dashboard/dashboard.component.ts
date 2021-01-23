@@ -4,7 +4,6 @@ import { ApiService } from '../api.service';
 import { BarChartData } from  './bar-chart/bar-chart-data.model'
 import { PieChartData } from  './pie-chart/pie-chart-data.model'
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,14 +11,12 @@ import { PieChartData } from  './pie-chart/pie-chart-data.model'
 })
 
 export class DashboardComponent implements OnInit {
-  allUserData: any[any];
-  _subscription;
   @Input() currentUserData: any[any[any]];
+  allUserData: any[any];
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
-    this._subscription = apiService.getUserData().subscribe((data) => { 
-      console.log('Subscribe is working Dashboard: ', data);
+    apiService.getUserData().subscribe((data) => { 
       this.currentUserData = data;    
       this.allUserData = data.allUsers;
     }, error => {console.log(`subscription error: `, error)});
@@ -120,5 +117,7 @@ export class DashboardComponent implements OnInit {
     colors: ['#E9C46A', '#F4A261', '#E76F51'],
     title: "Mentees"
   }
+
+  
 
 }

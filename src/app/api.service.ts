@@ -1,7 +1,7 @@
 import { Injectable,  EventEmitter, Output  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,14 +9,13 @@ import { Subject } from 'rxjs';
 })
 export class ApiService {
   private LOGIN_URL = "http://localhost:3000/login";
-  private MENTOR_URL = "http://localhost:3000/mentor";
-  private MENTEE_URL = "http://localhost:3000/mentee";
-  private DASHBOARD_URL = "http://localhost:3000/dashboard";
-  
+  private DASHBOARD_URL = "http://localhost:3000/authorizedDataRequest";
   private currentUserData: any = new Subject<any>();
+  private menteeDisplayUserData: any = new Subject<any>();
+  private mentorDisplayUserData: any = new Subject<any>();
+  private userRole = new Subject<string>(); // for header
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated = false;
-  private userRole = new Subject<string>(); // for header
   private userLocalStorageKey = 'userData';
   private authLocalStorageKey = 'authStatus';
   private rolemap = {
@@ -42,41 +41,66 @@ export class ApiService {
     return this.authStatusListener.asObservable();
   }
 
+  setAuthStatusListener(status) {
+    this.authStatusListener.next(status)
+  }
+
   public getUserData() {
     return this.currentUserData.asObservable();
+  }
+
+  public setUserData(data: object) {
+    this.currentUserData.next(data);
+  }
+
+  public getMenteeDisplayData() {
+    return this.menteeDisplayUserData.asObservable();
+  }
+
+  public setMenteeDisplayData(data: object) {
+    //this appears to work though the data does not come through useable in the mentee/mentor compoennts
+    this.menteeDisplayUserData.next(data);
+    console.log(`setting displaydata apiservice: `, data);
+  }
+
+  public getMentorDisplayData() {
+    return this.mentorDisplayUserData.asObservable();
+  }
+
+  public setMentorDisplayData(data: object) {
+  //this appears to work though the data does not come through useable in the mentee/mentor compoennts
+    this.mentorDisplayUserData.next(data);
   }
 
   public getUserRole() {
     return this.userRole.asObservable();
   }
 
+  public setUserRole(role) {
+    this.userRole.next(role);
+  }
+
   public async login (username, password) {
     console.log(`apiservice username: ${username} password: ${password}`);
-
-    let serverResponseUserData : any;
-
-    // let rolemap = {
-    //   admin: "./dashboard", 
-    //   mentor: "./mentor", 
-    //   mentee: "./mentee" 
-    // };
-
     //Shuold use an HTTP interceptor for catching anythign that isn't a 200. 
     //Can use observe parameter on http request like below to get full res object w/ body and headers, shouldn't need ot here through and should use Interceptor. 
     //return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true, observe: 'response'}).subscribe((data: any) => {
 
     return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
-
+      console.log(`login data: `, data);
       if (data.currentUserData.userData.userId != 0) {
-        this.authStatusListener.next(true);
+        this.setAuthStatusListener(true);
         this.isAuthenticated = true;
-        console.log(`in login: data: `, data);
-
+        this.setUserRole(data.currentUserData.userData.role);
+        this.setUserData(data);
+        this.router.navigate([this.rolemap[data.currentUserData.userData.role] ? this.rolemap[data.currentUserData.userData.role] : "./login"]);
         localStorage.setItem(this.userLocalStorageKey, JSON.stringify(data));
         localStorage.setItem(this.authLocalStorageKey, 'true');
-        this.userRole.next(data.currentUserData.userData.role);
-        this.currentUserData.next(data);
-        this.router.navigate([this.rolemap[data.currentUserData.userData.role] ? this.rolemap[data.currentUserData.userData.role] : "./login"]);
+        if (data.currentUserData.userData.role === 'mentee') {
+          this.setMenteeDisplayData(data);
+        } else if (data.currentUserData.userData.role === 'mentor') {
+          this.setMentorDisplayData(data);
+        }
       } else {
         this.logout();
       }
@@ -84,21 +108,32 @@ export class ApiService {
   }
 
   retrieveUserData() {
-    if (localStorage.getItem(this.userLocalStorageKey) != null) {
+    let retreivedUserData = JSON.parse(localStorage.getItem(this.userLocalStorageKey));
+    if (retreivedUserData != null) {
       //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
-      this.authStatusListener.next(true);
+      this.setAuthStatusListener(true);
       this.isAuthenticated = true;
-      this.currentUserData.next(JSON.parse(localStorage.getItem(this.userLocalStorageKey)));
-      this.userRole.next(JSON.parse(localStorage.getItem('userData')).currentUserData.userData.role);
-      return JSON.parse(localStorage.getItem(this.userLocalStorageKey));
+      this.setUserData(retreivedUserData);
+      this.setUserRole(retreivedUserData.currentUserData.userData.role);
+      if (retreivedUserData.currentUserData.userData.role === 'mentee') {
+        this.setMenteeDisplayData(retreivedUserData);
+      } else if (retreivedUserData.currentUserData.userData.role === 'mentor') {
+        this.setMentorDisplayData(retreivedUserData);
+      }
+      return retreivedUserData;
     } else {
-      //this call counts on a valid user token as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
+      //this call counts on a valid user token in your cookies as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
       return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data: any) => {
-        this.currentUserData.next(data);
-        this.userRole.next(data.currentUserData.userData.role);
-        localStorage.setItem(this.userLocalStorageKey, JSON.stringify(data));
-        this.authStatusListener.next(true);
+        this.setUserData(data);
+        this.setUserRole(data.currentUserData.userData.role);
+        this.setAuthStatusListener(true);
         this.isAuthenticated = true;
+        localStorage.setItem(this.userLocalStorageKey, JSON.stringify(data));
+        if (data.currentUserData.userData.role === 'mentee') {
+          this.setMenteeDisplayData(retreivedUserData);
+        } else if (data.currentUserData.userData.role === 'mentor') {
+          this.setMentorDisplayData(retreivedUserData);
+        }
       })
     }
   }
@@ -106,8 +141,11 @@ export class ApiService {
   logout() {
     console.log('getting logged out');
     this.isAuthenticated = false;
-    this.authStatusListener.next(false);
-    this.userRole.next('none');
+    this.setUserData({});
+    this.setAuthStatusListener(false);
+    this.setUserRole('none');
+    this.setMenteeDisplayData({})
+    this.setMentorDisplayData({})
     localStorage.removeItem(this.userLocalStorageKey);
     localStorage.removeItem(this.authLocalStorageKey);
     this.router.navigate(['/login']);

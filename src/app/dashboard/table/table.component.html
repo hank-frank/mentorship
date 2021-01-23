@@ -17,5 +17,5 @@
 
 <mat-card class="table-card">
     <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
-    <ngx-datatable [rows]="tableRows" [columns]="tableColumns" class="material"></ngx-datatable>
+    <ngx-datatable (activate)="tableRowOnClick($event)" [rows]="tableRows" [columns]="tableColumns"></ngx-datatable>
 </mat-card>

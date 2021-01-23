@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: [ './mentee.component.scss']
 })
 export class MenteeComponent implements OnInit {
-
   @Input() onboarding: boolean;
   @Input() matched: boolean;
   @Input() introduced: boolean;
@@ -19,33 +18,50 @@ export class MenteeComponent implements OnInit {
   @Input() lifetimeSessions: number;
   @Input() lifetimeSessionsPossible: number;
   @Input() rating: number;
+  @Input() userName: string;
+  @Input() userCompany: string;
+  @Input() userJobTitle: string;
+  private currentUserData: any[any[any]];
+  private currentUserRole: string;
+  displayUserData: any[any[any]];
+  private displayUserRole: string;
 
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
-    this._subscription = apiService.getUserData().subscribe((data) => { 
-      console.log('Subscribe is working Mentee: ', data);
-      this.currentUserData = data;    
+    apiService.getUserData().subscribe((data) => { 
+      this.currentUserData = data; 
+      this.currentUserRole = data.currentUserData.userData.role;   
+    }, error => {console.log(`subscription error: `, error)});
+
+    this.displayUserData = apiService.getMenteeDisplayData;
+    apiService.getMenteeDisplayData().subscribe((data) => { 
+      console.log(`mentee display data: `, data);
+      this.displayUserData = data;    
+      console.log(`mentee display data2: `, this.displayUserData);
+
     }, error => {console.log(`subscription error: `, error)});
   }
-  
-  _subscription;
-  @Input() currentUserData: any[any[any]];
-  
-  currentUserRole: string;
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.apiService.retrieveUserData();
-    this.onboarding = this.currentUserData.currentUserData.userData.onboarding;
-    this.matched = this.currentUserData.currentUserData.userData.matched;
-    this.introduced = this.currentUserData.currentUserData.userData.introduced;
-    this.schedule = this.currentUserData.currentUserData.userData.schedule;
-    this.smart = this.currentUserData.currentUserData.userData.smart;
-    this.sessions = this.currentUserData.currentUserData.userData.sessions;
-    this.sessionsPossible = this.currentUserData.currentUserData.userData.sessionsPossible;
-    this.lifetimeSessions = this.currentUserData.currentUserData.userData.lifetimeSessions;
-    this.lifetimeSessionsPossible = this.currentUserData.currentUserData.userData.lifetimeSessionsPossible;
-    this.rating = this.currentUserData.currentUserData.userData.rating;
+    //not working when coming from admin table, for some reason teh console logs in teh subscribe above work but this does not. 
+    //DOES work when coming from login? 
+
+    console.log(`mentee display data3: `,this.displayUserData);
+    this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
+    this.matched = this.displayUserData.currentUserData.userData.matched;
+    this.introduced = this.displayUserData.currentUserData.userData.introduced;
+    this.schedule = this.displayUserData.currentUserData.userData.schedule;
+    this.smart = this.displayUserData.currentUserData.userData.smart;
+    this.sessions = this.displayUserData.currentUserData.userData.sessions;
+    this.sessionsPossible = this.displayUserData.currentUserData.userData.sessionsPossible;
+    this.lifetimeSessions = this.displayUserData.currentUserData.userData.lifetimeSessions;
+    this.lifetimeSessionsPossible = this.displayUserData.currentUserData.userData.lifetimeSessionsPossible;
+    this.rating = this.displayUserData.currentUserData.userData.rating;
+    this.userName = this.displayUserData.currentUserData.userData.name;
+    this.userCompany = this.displayUserData.currentUserData.userData.company;
+    this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
   }
 
 };

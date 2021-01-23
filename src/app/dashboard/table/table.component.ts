@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ApiService } from '../../api.service';
+import { DashboardComponent } from '../dashboard.component'
+import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +13,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private dashboard: DashboardComponent
+    ) { }
 
   @Input() incommingAllUserData;
   allUserData: any[any];
@@ -40,5 +48,33 @@ export class TableComponent implements OnInit {
     ]
     this.tableRows = tableRowArr;
   };
+
+  tableRowOnClick(event) {
+    //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
+
+    if(event.type === 'click'){
+      let clickedUserName = event.row.name;
+      console.log(`clicked table row: `, clickedUserName, this.allUserData[0]);
+      for (let i = 0; i < this.allUserData.length; i++) {
+        if (this.allUserData[i].userData.name === clickedUserName) {
+          console.log(this.allUserData[i]);
+
+          let formattedUserDataObject = ({
+            currentUserData: this.allUserData[i]
+          })
+
+          if (this.allUserData[i].userData.role === 'mentee') {
+            this.apiService.setMenteeDisplayData(formattedUserDataObject);
+            console.log(`settingMenteeData: `, formattedUserDataObject);
+            this.router.navigate(['./mentee']);
+            
+          } else if (this.allUserData[i].userData.role === 'mentor') {
+            this.apiService.setMentorDisplayData(formattedUserDataObject);
+            this.router.navigate(['./mentor']);
+          }
+        }
+      }
+    }
+  }
 
 }

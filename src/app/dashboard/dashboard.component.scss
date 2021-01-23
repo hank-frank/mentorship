@@ -1,31 +1,4 @@
-$tiny: 550px;
-$mobile: 768px;
-$med: 1050px;
-$lrg: 1400px;
-
-@mixin tiny {
-    @media (max-width: $tiny) {
-        @content;
-    }
-}
-
-@mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
-}
-
-@mixin med {
-    @media (max-width: $med) {
-        @content;
-    }
-}
-
-@mixin lrg {
-    @media (max-width: $lrg) {
-        @content;
-    }
-}
+@import '../../global.scss';
 
 .chart-container {
     display: flex;

@@ -1,31 +1,4 @@
-$tiny: 550px;
-$mobile: 768px;
-$med: 1050px;
-$lrg: 1400px;
-
-@mixin tiny {
-    @media (max-width: $tiny) {
-        @content;
-    }
-}
-
-@mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
-}
-
-@mixin med {
-    @media (max-width: $med) {
-        @content;
-    }
-}
-
-@mixin lrg {
-    @media (max-width: $lrg) {
-        @content;
-    }
-}
+@import '../../global.scss';
 
 $image-size: 140px;
 
@@ -35,6 +8,10 @@ $image-size: 140px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding: 32px;
+    @include mobile {
+        padding: 0 32px 32px 32px;
+    }
 }
 
 .mentee-card-header {
@@ -42,7 +19,7 @@ $image-size: 140px;
     flex-direction: row;
     justify-content: center;
     padding: 5%;
-    margin: 0 0 32px 0;
+    margin: 0;
     // margin-bottom: 32px;
     @include tiny {
         flex-direction: column;
@@ -91,21 +68,21 @@ $image-size: 140px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 16px 0 0 40%;
+    margin: 32px 0 0 40%;
     font-size: 18px;
     font-weight: bold;
     width: fit-content;
     @include lrg {
-        margin: 16px 0 0 40%;
+        margin: 32px 0 0 40%;
     }
     @include med {
-        margin: 16px 0 0 30%;
+        margin: 32px 0 0 30%;
     }
     @include mobile {
-        margin: 16px 0 0 20%;
+        margin: 32px 0 0 20%;
     }
     @include tiny {
-        margin: 16px 0 0 5%;
+        margin: 32px 0 0 5%;
     }
 }
 
@@ -123,59 +100,6 @@ $image-size: 140px;
 }
 
 .user-text-numbers {
-    font-size: 28px;
+    font-size: 46px;
     margin-right: 16px;
 }
-
-
-.switch {
-    position: relative;
-    display: inline-block;
-}
-.switch-input {
-    display: none;
-}
-.switch-label {
-    display: block;
-    width: 48px;
-    height: 24px;
-    text-indent: -150%;
-    clip: rect(0 0 0 0);
-    color: transparent;
-    user-select: none;
-}
-.switch-label::before,
-.switch-label::after {
-    content: "";
-    display: block;
-    position: absolute;
-    cursor: pointer;
-}
-.switch-label::before {
-    width: 100%;
-    height: 100%;
-    background-color: #dedede;
-    border-radius: 9999em;
-    -webkit-transition: background-color 0.25s ease;
-    transition: background-color 0.25s ease;
-}
-.switch-label::after {
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
-    -webkit-transition: left 0.25s ease;
-    transition: left 0.25s ease;
-}
-.switch-input:checked + .switch-label::before {
-    background-color: green;
-}
-.switch-input:checked + .switch-label::after {
-    left: 24px;
-}
-
-
-

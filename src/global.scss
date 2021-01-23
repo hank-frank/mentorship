@@ -1,0 +1,76 @@
+// Global Colors - they match the material theme colors
+$primary: #264653;
+$primary-lighter: #bec8cb;
+$primary-darker: #172f39;
+$accent: #2a9d8f;
+$accent-lighter: #bfe2dd;
+$accent-darker: #198172;
+$warn: #e76f51;
+$warn-lighter: #f8d4cb;
+$warn-darker: #dd5237;
+$dark-text: #000000;
+$dark-background:     #2c2c2c;
+$dark-bg-lighter-5:   lighten($dark-background, 5%);
+$dark-bg-lighter-10:  lighten($dark-background, 10%);
+$dark-bg-lighter-20:  lighten($dark-background, 20%);
+$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$light-text: #ffffff;
+$light-background:    #fafafa;
+$light-bg-darker-5:   darken($light-background, 5%);
+$light-bg-darker-10:  darken($light-background, 10%);
+$light-bg-darker-20:  darken($light-background, 20%);
+$light-bg-darker-30:  darken($light-background, 30%);
+$light-bg-lighter-5:  lighten($light-background, 5%);
+
+// Media Queries
+$tiny: 550px;
+$mobile: 768px;
+$med: 1050px;
+$lrg: 1400px;
+
+@mixin tiny {
+    @media (max-width: $tiny) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+
+@mixin med {
+    @media (max-width: $med) {
+        @content;
+    }
+}
+
+@mixin lrg {
+    @media (max-width: $lrg) {
+        @content;
+    }
+}
+
+
+@mixin horizontal-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.centered-horizontal {
+    @include horizontal-center;
+}
+
+.centered-vertical {
+    @include vertical-center;
+}
+

@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //only if youre logged in get your user Data. 
     if (this.apiService.getIsAuth()){
       this.apiService.retrieveUserData();
     }
