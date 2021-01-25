@@ -162,8 +162,8 @@ export class ApiService {
     this.setUserData({});
     this.setAuthStatusListener(false);
     this.setUserRole('none');
-    this.setMenteeDisplayData({})
-    this.setMentorDisplayData({})
+    this.setMenteeDisplayData({});
+    this.setMentorDisplayData({});
     localStorage.removeItem(this.userLocalStorageKey);
     localStorage.removeItem(this.authLocalStorageKey);
     this.router.navigate(['/login']);

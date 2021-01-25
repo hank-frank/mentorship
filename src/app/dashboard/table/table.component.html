@@ -1,4 +1,4 @@
-<mat-card class='table-card'>
+<!-- <mat-card class='table-card'>
     <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
     <table>
         <thead>
@@ -13,9 +13,15 @@
             </tr>
         </tbody>
     </table>
-</mat-card>
+</mat-card> -->
 
 <mat-card class="table-card">
     <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
-    <ngx-datatable (activate)="tableRowOnClick($event)" [rows]="tableRows" [columns]="tableColumns"></ngx-datatable>
+    <ngx-datatable 
+        (activate)="tableRowOnClick($event)" 
+        [rows]="tableRows" 
+        [columns]="tableColumns"
+        [rowClass]="getRowClass"
+        [headerHeight]="40"
+    ></ngx-datatable>
 </mat-card>

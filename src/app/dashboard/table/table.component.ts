@@ -28,17 +28,18 @@ export class TableComponent implements OnInit {
     this.allUserData = this.incommingAllUserData;
     let tableRowArr = [];
     for (let i = 0; i < this.allUserData.length; i++) {
-      //colors hard coded tables table rows
-      if (this.allUserData[i].userData.role === 'mentor') {
-        this.allUserData[i].tableRowColor = { 'background-color': this.allUserData.rowColors[0] };
-      } else if (this.allUserData[i].userData.role === 'mentee') {
-        this.allUserData[i].tableRowColor = { 'background-color': this.allUserData.rowColors[1] };
-      }
+      // //colors hard coded tables table rows
+      // if (this.allUserData[i].userData.role === 'mentor') {
+      //   this.allUserData[i].tableRowColor = { 'background-color': this.allUserData.rowColors[0] };
+      // } else if (this.allUserData[i].userData.role === 'mentee') {
+      //   this.allUserData[i].tableRowColor = { 'background-color': this.allUserData.rowColors[1] };
+      // }
 
       //constructs table row data
       tableRowArr.push({
         name: this.allUserData[i].userData.name,
-        isFinished: this.allUserData[i].userData.isFinished
+        isFinished: this.allUserData[i].userData.isFinished,
+        role: this.allUserData[i].userData.role
       });
 
     };
@@ -48,6 +49,16 @@ export class TableComponent implements OnInit {
     ]
     this.tableRows = tableRowArr;
   };
+
+  getRowClass = (row) => {
+    //This isn't working? https://stackblitz.com/edit/angular-ngx-datatable-row-color-tzzfb9?file=app%2Fapp.component.ts
+    console.log(row.role)
+      return {
+        'mentee-row-color': row.role == 'mentee',
+        'mentor-row-color': row.role == 'mentor',
+        // 'mentee-row-color': true
+      };
+  }
 
   tableRowOnClick(event) {
     //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
