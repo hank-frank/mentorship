@@ -24,30 +24,24 @@ export class MenteeComponent implements OnInit {
   private currentUserData: any[any[any]];
   private currentUserRole: string;
   displayUserData: any[any[any]];
-  private displayUserRole: string;
-  _subscribe;
 
   constructor(private apiService: ApiService) {
-    this.currentUserData = apiService.getUserData;
     apiService.getUserData().subscribe((data) => { 
       this.currentUserData = data; 
       this.currentUserRole = data.currentUserData.userData.role;   
     }, error => {console.log(`subscription error: `, error)});
 
-    this.displayUserData = apiService.getMenteeDisplayData;
     apiService.getMenteeDisplayData().subscribe((data) => { 
-      console.log(`mentee display data1 : `, data);
       this.displayUserData = data;    
-      console.log(`mentee this.display data 2: `, this.displayUserData);
-
     }, error => {console.log(`subscription error: `, error)});
   }
 
   ngOnInit(): void { 
     this.apiService.retrieveUserData();
-    //not working when coming from admin table, for some reason teh console logs in teh subscribe above work but this does not. 
-    //DOES work when coming from login? 
-    console.log(`ngOnInit of Mentee userData3: `, this.displayUserData);
+    if ( this.currentUserRole === 'admin'){
+      this.apiService.retrieveMenteeData();
+    }
+    
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.introduced = this.displayUserData.currentUserData.userData.introduced;
