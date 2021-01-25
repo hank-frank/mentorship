@@ -18,6 +18,8 @@ export class ApiService {
   private themeColor = new Subject<string>();
   private isAuthenticated = false;
   private userLocalStorageKey = 'userData';
+  private menteeLocalStorageKey = 'menteeData';
+  private mentorLocalStorageKey = 'mentorData';
   private authLocalStorageKey = 'authStatus';
   private themeLocalStorageKey = 'theme';
   private rolemap = {
@@ -65,6 +67,9 @@ export class ApiService {
 
   public setMenteeDisplayData(data: object) {
     //this appears to work though the data does not come through useable in the mentee/mentor compoennts
+
+    localStorage.setItem(this.menteeLocalStorageKey, JSON.stringify(data));
+
     this.menteeDisplayUserData.next(data);
     console.log(`setting mentee display data apiservice: `, data);
     //could it be getting lost after a component refresh as a result of the redirect? 
@@ -76,6 +81,8 @@ export class ApiService {
 
   public setMentorDisplayData(data: object) {
   //this appears to work though the data does not come through useable in the mentee/mentor compoennts
+
+    localStorage.setItem(this.mentorLocalStorageKey, JSON.stringify(data));
     this.mentorDisplayUserData.next(data);
   }
 
@@ -126,6 +133,7 @@ export class ApiService {
   }
 
   retrieveUserData() {
+    console.log('api.service:  retrieveUserData()')
     let retreivedUserData = JSON.parse(localStorage.getItem(this.userLocalStorageKey));
     if (retreivedUserData != null) {
       //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
@@ -156,16 +164,39 @@ export class ApiService {
     }
   }
 
+  retrieveMenteeData() {
+    console.log('api.service:  retrieveMenteeData()')
+    let retreivedUserData = JSON.parse(localStorage.getItem(this.menteeLocalStorageKey));
+    if (retreivedUserData != null) {
+      this.setMenteeDisplayData(retreivedUserData);
+    }
+    return retreivedUserData;
+  }
+
+  retrieveMentorData() {
+    console.log('api.service:  retrieveMentorData()')
+    let retreivedUserData = JSON.parse(localStorage.getItem(this.mentorLocalStorageKey));
+    if (retreivedUserData != null) {
+      this.setMentorDisplayData(retreivedUserData);
+    }
+    return retreivedUserData;
+  }
+
+
+
   logout() {
     console.log('getting logged out');
     this.isAuthenticated = false;
-    this.setUserData({});
     this.setAuthStatusListener(false);
     this.setUserRole('none');
-    this.setMenteeDisplayData({})
-    this.setMentorDisplayData({})
+    // Hey don't try to set these to {} here.  Unneeded and causes error.
+    // this.setUserData({});
+    // this.setMenteeDisplayData({})
+    // this.setMentorDisplayData({})
     localStorage.removeItem(this.userLocalStorageKey);
     localStorage.removeItem(this.authLocalStorageKey);
+    localStorage.removeItem(this.menteeLocalStorageKey);
+    localStorage.removeItem(this.mentorLocalStorageKey);
     this.router.navigate(['/login']);
   }
 }

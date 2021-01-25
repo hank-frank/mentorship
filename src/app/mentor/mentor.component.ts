@@ -20,34 +20,30 @@ export class MentorComponent implements OnInit {
   @Input() userName: string;
   @Input() userCompany: string;
   @Input() userJobTitle: string;
+
   private currentUserData: any[any[any]];
   currentUserRole: string;
   displayUserData: any[any[any]];
-  private displayUserRole: string;
-
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
     apiService.getUserData().subscribe((data) => { 
       this.currentUserData = data; 
       this.currentUserRole = data.currentUserData.userData.role;   
-      console.log(`Role: `, this.currentUserRole);
     }, error => {console.log(`subscription error: `, error)});
 
     this.displayUserData = apiService.getMentorDisplayData;
     apiService.getMentorDisplayData().subscribe((data) => { 
-      console.log(`mentor display data: `, data);
       this.displayUserData = data;    
-      console.log(`mentor display data2: `, this.displayUserData);
-
     }, error => {console.log(`subscription error: `, error)});
   }
 
   ngOnInit(): void { 
     this.apiService.retrieveUserData();
-    //not working when coming from admin table, for some reason teh console logs in teh subscribe above work but this does not. 
-    //DOES work when coming from login? 
-    console.log(`mentor display data3: `,this.displayUserData);
+    if ( this.currentUserRole === 'admin'){
+      this.apiService.retrieveMentorData();
+    }
+
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.training = this.displayUserData.currentUserData.userData.training;
