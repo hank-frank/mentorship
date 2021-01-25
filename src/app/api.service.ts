@@ -15,9 +15,11 @@ export class ApiService {
   private mentorDisplayUserData: any = new Subject<any>();
   private userRole = new Subject<string>(); // for header
   private authStatusListener = new Subject<boolean>();
+  private themeColor = new Subject<string>();
   private isAuthenticated = false;
   private userLocalStorageKey = 'userData';
   private authLocalStorageKey = 'authStatus';
+  private themeLocalStorageKey = 'theme';
   private rolemap = {
     admin: "./dashboard", 
     mentor: "./mentor", 
@@ -29,7 +31,11 @@ export class ApiService {
     private router: Router) { 
       if (localStorage.getItem(this.authLocalStorageKey) != null) {
         this.isAuthenticated = true;
-        this.authStatusListener.next(true)
+        this.authStatusListener.next(true);
+      }
+      console.log(`in constructor: `, localStorage.getItem(this.themeLocalStorageKey));
+      if (localStorage.getItem(this.themeLocalStorageKey) != null) {
+        this.themeColor.next(localStorage.getItem(this.themeLocalStorageKey));
       }
   }
 
@@ -60,7 +66,8 @@ export class ApiService {
   public setMenteeDisplayData(data: object) {
     //this appears to work though the data does not come through useable in the mentee/mentor compoennts
     this.menteeDisplayUserData.next(data);
-    console.log(`setting displaydata apiservice: `, data);
+    console.log(`setting mentee display data apiservice: `, data);
+    //could it be getting lost after a component refresh as a result of the redirect? 
   }
 
   public getMentorDisplayData() {
@@ -78,6 +85,17 @@ export class ApiService {
 
   public setUserRole(role) {
     this.userRole.next(role);
+  }
+
+  public getTheme() {
+    return this.themeColor.asObservable();
+  }
+
+  public setTheme(theme: string) {
+    console.log(`theme: `, theme)
+    this.themeColor.next(theme);
+    localStorage.setItem(this.themeLocalStorageKey, theme);
+    console.log(`retrieved: `, localStorage.getItem(this.themeLocalStorageKey));
   }
 
   public async login (username, password) {

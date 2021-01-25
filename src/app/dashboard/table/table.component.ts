@@ -57,7 +57,7 @@ export class TableComponent implements OnInit {
       console.log(`clicked table row: `, clickedUserName, this.allUserData[0]);
       for (let i = 0; i < this.allUserData.length; i++) {
         if (this.allUserData[i].userData.name === clickedUserName) {
-          console.log(this.allUserData[i]);
+          console.log(`table matched clicked userData: `, this.allUserData[i]);
 
           let formattedUserDataObject = ({
             currentUserData: this.allUserData[i]

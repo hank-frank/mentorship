@@ -17,6 +17,15 @@
     }
 }
 
+.header-container > button:last-of-type {
+    height: 50px;
+    background-color: $warn;
+    color: white;
+    border: none;
+    margin: auto 0;
+    height: 60px;
+}
+
 .header-container > h1 {
     margin: 10px;
     @include mobile {
@@ -51,7 +60,9 @@
 }
 
 .sidenav-container {
-    flex: 1;
+    // flex: 1;
+    min-height: 800px;
+
     .sidenav {
         min-width: 240px;
         a {
@@ -61,7 +72,24 @@
             text-align: left;
         }
     }
+
     main {
         padding: 18px 24px;
     }
+
+    
 }
+
+#sidenav-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#sidenav-flex > button:last-of-type {
+    height: 60px;
+    background-color: $warn;
+    color: white;
+    border: none;
+}
+

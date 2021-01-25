@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   @Input() isAuthenticated: boolean;
   private darkTheme: boolean = true;
   public isMenuOpen: boolean = false;
+  _subscribeTheme;
 
   constructor(
       private apiService: ApiService, 
@@ -30,12 +31,36 @@ export class HeaderComponent implements OnInit {
     apiService.getUserRole().subscribe((role) => {
       this.currentUserRole = role;
     });
-  }''
+
+    //this  is curcular, it reads it, sets it in this component then fires the toggle which re-sets the observable and retriggers the subscription. 
+    // this._subscribeTheme = apiService.getTheme().subscribe((theme) => {
+    //   console.log(`header-onInit theme: `, theme);
+    //   if (theme === 'dark') {
+    //     this.darkTheme = true;
+
+    //   } else if (theme === 'light') {
+    //     this.darkTheme = false;
+    //     this.toggleTheme()
+    //   }
+    // });
+  };
 
   ngOnInit(): void {
+    console.log('header oninit');
     if (this.isAuthenticated){
       this.apiService.retrieveUserData();
-    }
+    };
+
+    // this._subscribeTheme = this.apiService.getTheme().subscribe((theme) => {
+    //   console.log(`header-constructor theme: `, theme);
+    //   if (theme === 'dark') {
+    //     this.darkTheme = true;
+    //     this.toggleTheme();
+    //   } else if (theme === 'light') {
+    //     this.darkTheme = false;
+    //     this.toggleTheme();
+    //   }
+    // });
   };
 
   onSidenavClick(): void {
@@ -46,9 +71,11 @@ export class HeaderComponent implements OnInit {
     if (this.darkTheme) {
       this.render.addClass(document.body, 'theme-alternate');
       this.darkTheme = false;
+      this.apiService.setTheme('light');
     } else {
       this.render.removeClass(document.body, 'theme-alternate');
       this.darkTheme = true;
+      this.apiService.setTheme('dark');
     }
   };
 
