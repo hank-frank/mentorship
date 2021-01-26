@@ -32,7 +32,8 @@ export class MenteeComponent implements OnInit {
     }, error => {console.log(`subscription error: `, error)});
 
     apiService.getMenteeDisplayData().subscribe((data) => { 
-      this.displayUserData = data;    
+      this.displayUserData = data;
+      this.updateDisplayData();   
     }, error => {console.log(`subscription error: `, error)});
   }
 
@@ -41,9 +42,10 @@ export class MenteeComponent implements OnInit {
     if ( this.currentUserRole === 'admin'){
       this.apiService.retrieveMenteeData();
     }
+    this.updateDisplayData();
+  }
 
-
-    
+  updateDisplayData(){
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.introduced = this.displayUserData.currentUserData.userData.introduced;
@@ -58,5 +60,4 @@ export class MenteeComponent implements OnInit {
     this.userCompany = this.displayUserData.currentUserData.userData.company;
     this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
   }
-
 };

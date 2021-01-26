@@ -34,7 +34,8 @@ export class MentorComponent implements OnInit {
 
     this.displayUserData = apiService.getMentorDisplayData;
     apiService.getMentorDisplayData().subscribe((data) => { 
-      this.displayUserData = data;    
+      this.displayUserData = data;
+      this.updateDisplayData();   
     }, error => {console.log(`subscription error: `, error)});
   }
 
@@ -43,7 +44,10 @@ export class MentorComponent implements OnInit {
     if ( this.currentUserRole === 'admin'){
       this.apiService.retrieveMentorData();
     }
-
+    this.updateDisplayData();
+  }
+  
+  updateDisplayData(){
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.training = this.displayUserData.currentUserData.userData.training;
@@ -56,5 +60,4 @@ export class MentorComponent implements OnInit {
     this.userCompany = this.displayUserData.currentUserData.userData.company;
     this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
   }
-
 };
