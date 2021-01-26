@@ -1,4 +1,4 @@
-<mat-card class="pie-chart-card">
+<mat-card class="pie-chart-card dark">
     <p class="chart-title">{{title}}</p>
     <ngx-charts-pie-chart
         [view]="view"
@@ -6,7 +6,7 @@
         [results]="pieValues"
         [gradient]="piegradient"
         [legend]="pieshowLegend"
-        [legendPosition]="legendPosition"
+        [legendPosition]="below"
         [labels]="showLabels"
         [doughnut]="isDoughnut"
         (select)="onSelect($event)"

@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { BarChartData } from  './bar-chart/bar-chart-data.model'
 import { PieChartData } from  './pie-chart/pie-chart-data.model'
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit {
       showYAxisLabel: true,
       yAxisLabel: 'Percentage',
       colors: ['#264653', '#2A9D8F'],
-      title: "Mentors"
+      title: "Mentors",
     };
 
     
