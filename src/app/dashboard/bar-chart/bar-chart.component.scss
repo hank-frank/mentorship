@@ -1,21 +1,20 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
 
 .bar-chart-card {
-    width: 40vw;
-    margin: 16px;
-    height: 540px;
-    // min-height: 400px;
-    color: white;
-    text-decoration-color: $light-text;
-    @include mobile {
-        width: 85%;
-        margin: 16px auto;
-    }
+  width: 40vw;
+  margin: 16px;
+  height: 540px;
+  // min-height: 400px;
+  color: white;
+  text-decoration-color: $light-text;
+  @include mobile {
+    width: 85%;
+    margin: 16px auto;
+  }
 }
 
 .chart-title {
-    font-size: 24px;
-    margin: 6px auto;
-    text-align: center;
+  font-size: 24px;
+  margin: 6px auto;
+  text-align: center;
 }
-

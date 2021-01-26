@@ -60,11 +60,6 @@ export class TableComponent implements OnInit {
       };
   }
 
-
-
-
-
-
   tableRowOnClick(event) {
     //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
 
@@ -81,16 +76,16 @@ export class TableComponent implements OnInit {
 
           if (this.allUserData[i].userData.role === 'mentee') {
             this.apiService.setMenteeDisplayData(formattedUserDataObject);
-            console.log(`settingMenteeData: `, formattedUserDataObject);
-            this.router.navigate(['./mentee']);
+            this.apiService.setIsMenteeDisplayed(true);
+            // this.router.navigate(['./mentee']);
             
           } else if (this.allUserData[i].userData.role === 'mentor') {
             this.apiService.setMentorDisplayData(formattedUserDataObject);
-            this.router.navigate(['./mentor']);
+            this.apiService.setIsMentorDisplayed(true);
+            // this.router.navigate(['./mentor']);
           }
         }
       }
     }
   }
-
 }

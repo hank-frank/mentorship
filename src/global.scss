@@ -70,41 +70,58 @@ $lrg: 1400px;
 .centered-vertical {
   @include vertical-center;
 }
+/*
+TODO hello there
+*/
+// .ngx-datatable.tableCard {
+//   background-color: $primary-lighter;
+//   color: rgb(31, 31, 31);
+//   border-radius: 5px;
+//   cursor: pointer;
+//   box-shadow: 0.5px 0.5px 0.5px 2px $primary-darker;
+//   text-align: center;
+// }
 
-.ngx-datatable.tableCard {
-  background-color: $primary-lighter;
-  color: rgb(31, 31, 31);
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0.5px 0.5px 0.5px 2px $primary-darker;
-  text-align: center;
+// .datatable-header {
+//   border-radius: 5px;
+//   .datatable-header-cell {
+//     background-color: $primary;
+//     color: $light-text;
+//     border-radius: none;
+//     box-shadow: 2px 1px 1px 1px rgb(28, 28, 28);
+//   }
+// }
+
+// .datatable-body {
+//   .datatable-body-cell {
+//     background-color: $dark-bg-lighter-10;
+//     color: $light-text;
+//     border-radius: none;
+//     box-shadow: 2px 1px 1px 1px rgb(41, 39, 39);
+//   }
+//   .datatable-body-cell:nth-child(even) {
+//     background-color: $dark-bg-lighter-30;
+//     color: $light-text;
+//     border-radius: none;
+//     box-shadow: 0px 1px 1px 1px rgb(72, 68, 68);
+//   }
+// }
+
+// .dark {
+//   fill: $light-text;
+// }
+
+.mentee-row-color {
+  background-color: $accent;
+  background: $accent;
+  color: red;
+  height: 50px;
+  font-size: 22px;
 }
-
-.datatable-header {
-  border-radius: 5px;
-  .datatable-header-cell {
-    background-color: $primary;
-    color: $light-text;
-    border-radius: none;
-    box-shadow: 2px 1px 1px 1px rgb(28, 28, 28);
-  }
-}
-
-.datatable-body {
-  .datatable-body-cell {
-    background-color: $dark-bg-lighter-10;
-    color: $light-text;
-    border-radius: none;
-    box-shadow: 2px 1px 1px 1px rgb(41, 39, 39);
-  }
-  .datatable-body-cell:nth-child(even) {
-    background-color: $dark-bg-lighter-30;
-    color: $light-text;
-    border-radius: none;
-    box-shadow: 0px 1px 1px 1px rgb(72, 68, 68);
-  }
-}
-
-.dark {
-  fill: $light-text;
+.mentor-row-color {
+  background-color: $warn;
+  background: $warn;
+  color: green;
+  height: 50px;
+  font-size: 22px;
 }
