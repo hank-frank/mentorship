@@ -9,18 +9,17 @@ $warn: #e76f51;
 $warn-lighter: #f8d4cb;
 $warn-darker: #dd5237;
 $dark-text: #000000;
-$dark-background:     #2c2c2c;
-$dark-bg-lighter-5:   lighten($dark-background, 5%);
-$dark-bg-lighter-10:  lighten($dark-background, 10%);
-$dark-bg-lighter-20:  lighten($dark-background, 20%);
-$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$dark-background: #2c2c2c;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
 $light-text: #ffffff;
-$light-background:    #fafafa;
-$light-bg-darker-5:   darken($light-background, 5%);
-$light-bg-darker-10:  darken($light-background, 10%);
-$light-bg-darker-20:  darken($light-background, 20%);
-$light-bg-darker-30:  darken($light-background, 30%);
-
+$light-background: #fafafa;
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
 
 // Media Queries
 $tiny: 550px;
@@ -29,48 +28,83 @@ $med: 1050px;
 $lrg: 1400px;
 
 @mixin tiny {
-    @media (max-width: $tiny) {
-        @content;
-    }
+  @media (max-width: $tiny) {
+    @content;
+  }
 }
 
 @mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
+  @media (max-width: $mobile) {
+    @content;
+  }
 }
 
-
 @mixin med {
-    @media (max-width: $med) {
-        @content;
-    }
+  @media (max-width: $med) {
+    @content;
+  }
 }
 
 @mixin lrg {
-    @media (max-width: $lrg) {
-        @content;
-    }
+  @media (max-width: $lrg) {
+    @content;
+  }
 }
 
-
 @mixin horizontal-center {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 @mixin vertical-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .centered-horizontal {
-    @include horizontal-center;
+  @include horizontal-center;
 }
 
 .centered-vertical {
-    @include vertical-center;
+  @include vertical-center;
 }
 
+.ngx-datatable.tableCard {
+  background-color: $primary-lighter;
+  color: rgb(31, 31, 31);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0.5px 0.5px 0.5px 2px $primary-darker;
+  text-align: center;
+}
+
+.datatable-header {
+  border-radius: 5px;
+  .datatable-header-cell {
+    background-color: $primary;
+    color: $light-text;
+    border-radius: none;
+    box-shadow: 2px 1px 1px 1px rgb(28, 28, 28);
+  }
+}
+
+.datatable-body {
+  .datatable-body-cell {
+    background-color: $dark-bg-lighter-10;
+    color: $light-text;
+    border-radius: none;
+    box-shadow: 2px 1px 1px 1px rgb(41, 39, 39);
+  }
+  .datatable-body-cell:nth-child(even) {
+    background-color: $dark-bg-lighter-30;
+    color: $light-text;
+    border-radius: none;
+    box-shadow: 0px 1px 1px 1px rgb(72, 68, 68);
+  }
+}
+
+.dark {
+  fill: $light-text;
+}
