@@ -15,6 +15,9 @@ export class ApiService {
   private userRole = new Subject<string>(); // for header
   private authStatusListener = new Subject<boolean>();
   private themeColor = new Subject<string>();
+  private isMenteeDisplayed = new Subject<boolean>();
+  private isMentorDisplayed = new Subject<boolean>();
+
   private isAuthenticated = false;
   private userLocalStorageKey = 'userData';
   private menteeLocalStorageKey = 'menteeData';
@@ -43,13 +46,27 @@ export class ApiService {
   getIsAuth() {
     return this.isAuthenticated;
   };
-
+  
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   };
 
   setAuthStatusListener(status) {
     this.authStatusListener.next(status)
+  };
+  getIsMenteeDisplayed() {
+    return this.isMenteeDisplayed.asObservable();
+  };
+
+  setIsMenteeDisplayed(status) {
+    this.isMenteeDisplayed.next(status)
+  };
+  getIsMentorDisplayed() {
+    return this.isMentorDisplayed.asObservable();
+  };
+
+  setIsMentorDisplayed(status) {
+    this.isMentorDisplayed.next(status)
   };
 
   public getUserData() {

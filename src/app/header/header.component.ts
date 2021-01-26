@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
     apiService.getUserRole().subscribe((role) => {
       this.currentUserRole = role;
     });
+  };
 
     //this  is curcular, it reads it, sets it in this component then fires the toggle which re-sets the observable and retriggers the subscription. 
     // this._subscribeTheme = apiService.getTheme().subscribe((theme) => {
@@ -43,7 +44,6 @@ export class HeaderComponent implements OnInit {
     //     this.toggleTheme()
     //   }
     // });
-  };
 
   ngOnInit(): void {
     console.log('header oninit');

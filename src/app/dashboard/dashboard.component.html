@@ -1,17 +1,28 @@
 <div>
-<div class="chart-container">
+  <div class="chart-container">
     <app-bar-chart [incomingBarChartData]="mentorBarChartData"></app-bar-chart>
     <app-bar-chart [incomingBarChartData]="menteeBarChartData"></app-bar-chart>
-</div>
+  </div>
 
-<div class="chart-container">
+  <div class="chart-container">
     <app-pie-chart [incommingPieChartData]="mentorPieChartData"></app-pie-chart>
     <app-pie-chart [incommingPieChartData]="menteePieChartData"></app-pie-chart>
-</div>
+  </div>
 
-<app-table [incommingAllUserData]="allUserData" color="primary"></app-table>
+  <app-table [incommingAllUserData]="allUserData" color="primary"></app-table>
 
-<!-- 
+  <div *ngIf="isMenteeDisplayed">
+    <button (click)="closeCardMentee()">Close</button>
+    <app-mentee></app-mentee>
+  </div>
+  <div *ngIf="isMentorDisplayed">
+    <button (click)="closeCardMentor()">Close</button>
+    <app-mentor></app-mentor>
+  </div>
+
+  <!-- <app-mentor>
+</app-mentor> -->
+  <!-- 
 <mat-card class='table-card'>
     <h4 class="table-title">All Users</h4>
     <table>
@@ -27,3 +38,4 @@
         </tbody>
     </table>
 </mat-card> -->
+</div>
