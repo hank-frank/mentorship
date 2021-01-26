@@ -1,4 +1,4 @@
-<mat-card class="bar-chart-card">
+<mat-card class="bar-chart-card dark">
     <p class="chart-title">{{title}}</p>
     <ngx-charts-bar-vertical
         [view]="view"
@@ -8,10 +8,12 @@
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
         [legend]="showLegend"
+        [legendPosition]="'below'"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
-        (select)="onSelect($event)">
+        (select)="onSelect($event)"
+    >
     </ngx-charts-bar-vertical>
     </mat-card>

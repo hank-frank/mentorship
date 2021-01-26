@@ -60,6 +60,11 @@ export class TableComponent implements OnInit {
       };
   }
 
+
+
+
+
+
   tableRowOnClick(event) {
     //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
 
