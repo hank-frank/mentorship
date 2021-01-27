@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +38,6 @@ export class ApiService {
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
       }
-      console.log(`in constructor: `, localStorage.getItem(this.themeLocalStorageKey));
       if (localStorage.getItem(this.themeLocalStorageKey) != null) {
         this.themeColor.next(localStorage.getItem(this.themeLocalStorageKey));
       }
@@ -108,19 +108,19 @@ export class ApiService {
   };
 
   public setTheme(theme: string) {
-    console.log(`theme: `, theme)
+    // console.log(`theme: `, theme)
     this.themeColor.next(theme);
     localStorage.setItem(this.themeLocalStorageKey, theme);
-    console.log(`retrieved: `, localStorage.getItem(this.themeLocalStorageKey));
+    // console.log(`retrieved: `, localStorage.getItem(this.themeLocalStorageKey));
   };
 
   public async login (username, password) {
-    console.log(`apiservice username: ${username} password: ${password}`);
+    // console.log(`apiservice username: ${username} password: ${password}`);
     //Shuold use an HTTP interceptor for catching anythign that isn't a 200. 
     //Can use observe parameter on http request like below to get full res object w/ body and headers, shouldn't need ot here through and should use Interceptor. 
     //return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true, observe: 'response'}).subscribe((data: any) => {
 
-    return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true}).subscribe((data: any) => {
+    return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials:true }).subscribe((data: any) => {
       console.log(`login data: `, data);
       if (data.currentUserData.userData.userId != 0) {
         this.setAuthStatusListener(true);
@@ -142,7 +142,7 @@ export class ApiService {
   }
 
   retrieveUserData() {
-    console.log('api.service:  retrieveUserData()')
+    // console.log('api.service:  retrieveUserData()')
     let retreivedUserData = JSON.parse(localStorage.getItem(this.userLocalStorageKey));
     if (retreivedUserData != null) {
       //return value is unnecessary, this is updating the current user data subject which each component is subscribed to either from local storage in the if or from a second API call in the else
@@ -159,6 +159,7 @@ export class ApiService {
     } else {
       //this call counts on a valid user token in your cookies as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
       return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data: any) => {
+        
         this.setUserData(data);
         this.setUserRole(data.currentUserData.userData.role);
         this.setAuthStatusListener(true);
@@ -169,12 +170,14 @@ export class ApiService {
         } else if (data.currentUserData.userData.role === 'mentor') {
           this.setMentorDisplayData(retreivedUserData);
         }
-      })
+      }, (error) => {
+        console.log(`login error `, error);
+      });
     }
   }
 
   retrieveMenteeData() {
-    console.log('api.service:  retrieveMenteeData()')
+    // console.log('api.service:  retrieveMenteeData()')
     let retreivedUserData = JSON.parse(localStorage.getItem(this.menteeLocalStorageKey));
     if (retreivedUserData != null) {
       this.setMenteeDisplayData(retreivedUserData);
@@ -183,7 +186,7 @@ export class ApiService {
   }
 
   retrieveMentorData() {
-    console.log('api.service:  retrieveMentorData()')
+    // console.log('api.service:  retrieveMentorData()')
     let retreivedUserData = JSON.parse(localStorage.getItem(this.mentorLocalStorageKey));
     if (retreivedUserData != null) {
       this.setMentorDisplayData(retreivedUserData);
