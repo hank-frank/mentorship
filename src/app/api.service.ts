@@ -15,6 +15,7 @@ export class ApiService {
   private menteeDisplayUserData: any = new Subject<any>();
   private mentorDisplayUserData: any = new Subject<any>();
   private userRole = new Subject<string>(); // for header
+  private isLogInErrorMessage = new Subject<boolean>(); // for header
   private authStatusListener = new Subject<boolean>();
   private themeColor = new Subject<string>();
   private isMenteeDisplayed = new Subject<boolean>();
@@ -26,45 +27,51 @@ export class ApiService {
   private authLocalStorageKey = 'authStatus';
   private themeLocalStorageKey = 'theme';
   private rolemap = {
-    admin: "./dashboard", 
-    mentor: "./mentor", 
-    mentee: "./mentee" 
+    admin: "./dashboard",
+    mentor: "./mentor",
+    mentee: "./mentee"
   };
-  
+
   constructor(
-    private httpClient: HttpClient, 
-    private router: Router) { 
-      if (localStorage.getItem(this.authLocalStorageKey) != null) {
-        this.isAuthenticated = true;
-        this.authStatusListener.next(true);
-      }
-      if (localStorage.getItem(this.themeLocalStorageKey) != null) {
-        this.themeColor.next(localStorage.getItem(this.themeLocalStorageKey));
-      }
+    private httpClient: HttpClient,
+    private router: Router) {
+    if (localStorage.getItem(this.authLocalStorageKey) != null) {
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true);
+    }
+    if (localStorage.getItem(this.themeLocalStorageKey) != null) {
+      this.themeColor.next(localStorage.getItem(this.themeLocalStorageKey));
+    }
   }
 
   getIsAuth() {
     return this.isAuthenticated;
   };
-  
+
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   };
-
   setAuthStatusListener(status) {
     this.authStatusListener.next(status)
   };
+
+  getIsLogInErrorMessage() {
+    return this.isLogInErrorMessage.asObservable();
+  };
+  setIsLogInErrorMessage(status) {
+    this.isLogInErrorMessage.next(status)
+  };
+
   getIsMenteeDisplayed() {
     return this.isMenteeDisplayed.asObservable();
   };
-
   setIsMenteeDisplayed(status) {
     this.isMenteeDisplayed.next(status)
   };
+
   getIsMentorDisplayed() {
     return this.isMentorDisplayed.asObservable();
   };
-
   setIsMentorDisplayed(status) {
     this.isMentorDisplayed.next(status)
   };
@@ -114,13 +121,13 @@ export class ApiService {
     // console.log(`retrieved: `, localStorage.getItem(this.themeLocalStorageKey));
   };
 
-  public async login (username, password) {
+  public async login(username, password) {
     // console.log(`apiservice username: ${username} password: ${password}`);
     //Shuold use an HTTP interceptor for catching anythign that isn't a 200. 
     //Can use observe parameter on http request like below to get full res object w/ body and headers, shouldn't need ot here through and should use Interceptor. 
     //return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, {withCredentials:true, observe: 'response'}).subscribe((data: any) => {
 
-    return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials:true }).subscribe((data: any) => {
+    return this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials: true }).subscribe((data: any) => {
       console.log(`login data: `, data);
       if (data.currentUserData.userData.userId != 0) {
         this.setAuthStatusListener(true);
@@ -158,8 +165,8 @@ export class ApiService {
       return retreivedUserData;
     } else {
       //this call counts on a valid user token in your cookies as the auth on the server side which a user will have because they will not be calling this metnod if they have not logged in. 
-      return this.httpClient.get(`${this.DASHBOARD_URL}`, {withCredentials:true}).subscribe((data: any) => {
-        
+      return this.httpClient.get(`${this.DASHBOARD_URL}`, { withCredentials: true }).subscribe((data: any) => {
+
         this.setUserData(data);
         this.setUserRole(data.currentUserData.userData.role);
         this.setAuthStatusListener(true);
