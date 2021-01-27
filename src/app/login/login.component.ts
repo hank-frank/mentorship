@@ -10,10 +10,17 @@ import { ApiService } from '../api.service';
 
 export class LoginComponent implements OnInit {
   response : any = {};
+  errorMessage : string = "Invalid user name or password"; 
+  isLoggedInErrorMessage : boolean = false;
 
   constructor(private apiService: ApiService, 
+    
     // private router: Router
-    ) { }
+    ) {
+      apiService.getIsLogInErrorMessage().subscribe((status) => {
+        this.isLoggedInErrorMessage = status;
+      });
+     }
 
   ngOnInit(): void {
   }

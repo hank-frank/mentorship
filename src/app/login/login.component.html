@@ -2,6 +2,9 @@
 
     <input [(ngModel)]="username" placeholder="username or email" />
     <input [(ngModel)]="password" placeholder="password" />
-    
+
     <button mat-raised-button color="accent" (click)="submit()">Login</button>
+    <div *ngIf="isLoggedInErrorMessage">
+        <p class="login-error">{{errorMessage}}</p>
+    </div>
 </mat-card>
