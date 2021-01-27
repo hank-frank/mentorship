@@ -1,11 +1,12 @@
-import { Injectable,  EventEmitter, Output  } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   private LOGIN_URL = "http://localhost:3000/login";
   private DASHBOARD_URL = "http://localhost:3000/authorizedDataRequest";
@@ -17,7 +18,6 @@ export class ApiService {
   private themeColor = new Subject<string>();
   private isMenteeDisplayed = new Subject<boolean>();
   private isMentorDisplayed = new Subject<boolean>();
-
   private isAuthenticated = false;
   private userLocalStorageKey = 'userData';
   private menteeLocalStorageKey = 'menteeData';
