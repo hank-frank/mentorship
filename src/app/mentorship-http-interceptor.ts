@@ -5,6 +5,7 @@ import { catchError, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class MentorshipHttpInterceptor implements HttpInterceptor {
+    constructor() {};
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("Http Interceptor");
         return next.handle(req)
