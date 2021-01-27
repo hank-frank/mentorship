@@ -46,7 +46,6 @@ export class HeaderComponent implements OnInit {
     // });
 
   ngOnInit(): void {
-    console.log('header oninit');
     if (this.isAuthenticated){
       this.apiService.retrieveUserData();
     };
