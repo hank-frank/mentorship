@@ -78,6 +78,10 @@ $lrg: 1400px;
 
 }
 
+.modal-content {
+  background-color: black !important;
+    }
+
 .ngx-datatable.tableCard {
   background-color: $dark-bg-lighter-10;
   color: $light-text;
