@@ -14,3 +14,6 @@ body {
 body.theme-alternate {
     background: $light-bg-darker-30;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

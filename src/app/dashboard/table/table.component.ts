@@ -74,6 +74,8 @@ export class TableComponent implements OnInit {
           if (this.allUserData[i].userData.role === 'mentee') {
             this.apiService.setMenteeDisplayData(formattedUserDataObject);
             this.apiService.setIsMenteeDisplayed(true);
+
+            
             // this.router.navigate(['./mentee']);
             
           } else if (this.allUserData[i].userData.role === 'mentor') {

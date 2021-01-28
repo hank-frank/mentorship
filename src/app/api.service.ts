@@ -67,6 +67,7 @@ export class ApiService {
   };
   setIsMenteeDisplayed(status) {
     this.isMenteeDisplayed.next(status)
+    
   };
 
   getIsMentorDisplayed() {

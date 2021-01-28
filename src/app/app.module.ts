@@ -21,6 +21,9 @@ import { PieChartComponent } from './dashboard/pie-chart/pie-chart.component';
 import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { TableComponent } from './dashboard/table/table.component';
 import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+// import { ModalComponent } from './dashboard/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
     HeaderComponent,
     PieChartComponent,
     BarChartComponent,
-    TableComponent
+    TableComponent,
+    ModalComponent,
+    // ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
     NgxChartsModule,
     NgxDatatableModule,
     CommonModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [
     AppComponent,

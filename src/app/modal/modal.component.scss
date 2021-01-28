@@ -1,0 +1,10 @@
+@import '../../global.scss';
+
+.tableCard {
+    background-color: $dark-bg-lighter-10;
+    color: $light-text;
+    border-radius: 5px;
+    cursor: pointer;
+    // box-shadow: 0.5px 0.5px 0.5px 2px $dark-background;
+    text-align: center;
+  }
