@@ -27,7 +27,6 @@ export class TableComponent implements OnInit {
     private dashboard: DashboardComponent
     ) {
       apiService.getTheme().subscribe((theme) => {
-        console.log(`theme: `, theme);
         if (theme === 'dark' || theme === 'light') {
           this.theme = theme;
         }
@@ -51,23 +50,24 @@ export class TableComponent implements OnInit {
       { name: this.allUserData.columnHeaders[0] }, 
       { name: this.allUserData.columnHeaders[1] },
       {name : 'click'}
-    ]
+    ];
+
     this.tableRows = tableRowArr;
   };
 
-  getRowClass = (row) => {
+  getRowClass = (row: any) => {
       return {
         'mentee-row-color': row.role == 'mentee',
         'mentor-row-color': row.role == 'mentor',
       };
-  }
+  };
 
   //puts selected rows into an array, not sure how to style from that
   // onSelect({ selected }) {
   //   console.log('Select Event', selected, this.selected);
   // }
 
-  tableRowOnClick(event) {
+  tableRowOnClick(event) : void {
     //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
 
     if(event.type === 'click'){

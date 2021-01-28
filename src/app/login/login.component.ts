@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,26 +8,22 @@ import { ApiService } from '../api.service';
 })
 
 export class LoginComponent implements OnInit {
-  response : any = {};
+  @Input() username: string;
+  @Input() password: string;
   errorMessage : string = "Invalid user name or password"; 
   isLoggedInErrorMessage : boolean = false;
 
-  constructor(private apiService: ApiService
-    ) {
+  constructor(private apiService: ApiService) {
       apiService.getIsLogInErrorMessage().subscribe((status) => {
         this.isLoggedInErrorMessage = status;
       });
-     }
+    }
 
   ngOnInit(): void {
-  }
+  };
 
-  @Input() username: string;
-  @Input() password: string;
-
-  async submit() {
+  submit() : void {
       this.apiService.login(this.username, this.password);
   }
-
 
 }

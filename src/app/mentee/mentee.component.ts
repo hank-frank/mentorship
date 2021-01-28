@@ -35,7 +35,7 @@ export class MenteeComponent implements OnInit {
       this.displayUserData = data;
       this.updateDisplayData();   
     }, error => {console.log(`subscription error: `, error)});
-  }
+  };
 
   ngOnInit(): void { 
     this.apiService.retrieveUserData();
@@ -43,9 +43,9 @@ export class MenteeComponent implements OnInit {
       this.apiService.retrieveMenteeData();
     }
     this.updateDisplayData();
-  }
+  };
 
-  updateDisplayData(){
+  updateDisplayData() : void {
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.introduced = this.displayUserData.currentUserData.userData.introduced;
@@ -59,5 +59,5 @@ export class MenteeComponent implements OnInit {
     this.userName = this.displayUserData.currentUserData.userData.name;
     this.userCompany = this.displayUserData.currentUserData.userData.company;
     this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
-  }
+  };
 };

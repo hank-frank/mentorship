@@ -21,18 +21,16 @@ export class MentorComponent implements OnInit {
   @Input() userCompany: string;
   @Input() userJobTitle: string;
 
-  private currentUserData: any[any[any]];
+  currentUserData: any[any[any]];
   currentUserRole: string;
   displayUserData: any[any[any]];
 
   constructor(private apiService: ApiService) {
-    this.currentUserData = apiService.getUserData;
     apiService.getUserData().subscribe((data) => { 
       this.currentUserData = data; 
       this.currentUserRole = data.currentUserData.userData.role;   
     }, error => {console.log(`subscription error: `, error)});
 
-    this.displayUserData = apiService.getMentorDisplayData;
     apiService.getMentorDisplayData().subscribe((data) => { 
       this.displayUserData = data;
       this.updateDisplayData();   
@@ -45,9 +43,9 @@ export class MentorComponent implements OnInit {
       this.apiService.retrieveMentorData();
     }
     this.updateDisplayData();
-  }
+  };
   
-  updateDisplayData(){
+  updateDisplayData() : void {
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.training = this.displayUserData.currentUserData.userData.training;
@@ -59,5 +57,5 @@ export class MentorComponent implements OnInit {
     this.userName = this.displayUserData.currentUserData.userData.name;
     this.userCompany = this.displayUserData.currentUserData.userData.company;
     this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
-  }
+  };
 };
