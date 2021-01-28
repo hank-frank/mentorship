@@ -4,36 +4,11 @@
 
 @import '../../../global.scss';
 
-
 .table-card{
     width: fit-content;
     max-width: 80vw;
     margin: 16px auto 32px auto;
-    padding: 16px 32px;
-}
-
-.ngx-datatable {
-    padding: 8px 16px;
-    font-size: 18px;
-}
-
-.datatable-header {
-    background-color: red;
-}
-
-// The manually built table
-table {
-    margin: 6px auto;
-}
-
-thead > tr > td {
-    font-size: 18px;
-    font-weight: 400;
-    background: #E9C46A;
-    border-top: 4px solid #e1bc5d;
-    border-bottom: 1px solid #fff;
-    color: #101010;
-    padding: 8px;
+    padding: 32px;
 }
 
 .table-title {
@@ -42,30 +17,4 @@ thead > tr > td {
     text-align: center;
 }
 
-td {
-    font-size: 18px;
-    padding: 6px;
-    color: white;
-}
-
-.ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap {
-  background-color: $primary;
-  font-size: 20px;
-}
-
-
-.mentee-row-color {
-  background-color: $accent;
-  background: $accent;
-  color: red;
-  height: 50px;
-  font-size: 22px;
-}
-.mentor-row-color {
-  background-color: $warn;
-  background: $warn;
-  color: green;
-  height: 50px;
-  font-size: 22px;
-}
 

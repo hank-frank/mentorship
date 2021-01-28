@@ -2,7 +2,7 @@ import { Component, OnInit, NgModule, HostListener, Input } from '@angular/core'
 // import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ApiService } from '../../api.service';
-import { PieChartData } from './pie-chart-data.model'
+import { PieChartData } from './pie-chart-data.model';
 
 @Component({
   selector: 'app-pie-chart',
@@ -26,8 +26,14 @@ export class PieChartComponent implements OnInit {
   piecolorScheme = {
     domain: this.colors
   };
+  theme: string = 'dark';
   
-  constructor() {}
+  constructor(private apiService: ApiService) {
+    apiService.getTheme().subscribe((theme) => {
+      console.log(`theme: `, theme);
+      this.theme = theme;
+    })
+  }
 
   ngOnInit(): void {
   this.pieValues = this.incommingPieChartData.pieValues;

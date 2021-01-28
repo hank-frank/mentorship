@@ -1,4 +1,4 @@
-<mat-card class="bar-chart-card dark">
+<mat-card class="bar-chart-card" [ngClass]="theme === 'dark' ? 'dark' : 'light'">
   <p class="chart-title">{{ title }}</p>
   <ngx-charts-bar-vertical
     [view]="view"

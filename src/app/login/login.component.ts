@@ -13,9 +13,7 @@ export class LoginComponent implements OnInit {
   errorMessage : string = "Invalid user name or password"; 
   isLoggedInErrorMessage : boolean = false;
 
-  constructor(private apiService: ApiService, 
-    
-    // private router: Router
+  constructor(private apiService: ApiService
     ) {
       apiService.getIsLogInErrorMessage().subscribe((status) => {
         this.isLoggedInErrorMessage = status;

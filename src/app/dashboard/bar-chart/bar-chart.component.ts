@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { BarChartData } from  './bar-chart-data.model'
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -28,8 +29,13 @@ export class BarChartComponent implements OnInit {
   colorScheme = {
     domain: this.colors
   };
+  theme: string = 'dark';
 
-  constructor() {
+  constructor(private apiService: ApiService) {
+    apiService.getTheme().subscribe((theme) => {
+      console.log('barchart themee: ', theme);
+      this.theme = theme;
+    })
   }
   
   ngOnInit(): void {

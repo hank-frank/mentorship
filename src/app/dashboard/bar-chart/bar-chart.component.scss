@@ -3,8 +3,7 @@
 .bar-chart-card {
   width: 40vw;
   margin: 16px;
-  height: 540px;
-  // min-height: 400px;
+  height: 500px;
   color: white;
   text-decoration-color: $light-text;
   @include mobile {
@@ -17,4 +16,8 @@
   font-size: 24px;
   margin: 6px auto;
   text-align: center;
+}
+
+.bar-chart-card.light > .chart-title {
+  color: $dark-text;
 }

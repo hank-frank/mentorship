@@ -9,15 +9,18 @@
     
 }
 
-.login-card > input {
-    font-size: 18px;
-    width: 90%;
-    margin: 16px auto;
-}
+// .login-card > input {
+//     font-size: 18px;
+//     width: 90%;
+//     margin: 16px auto;
+//     background-color: $dark-bg-lighter-10;
+//     color: $light-text
+// }
+
 
 .login-error {
     font-size: 18px;
-    color: red;
+    color: $warn;
     text-align: center;
-    margin-top: 16px;
+    margin: 32px 0 16px 0 !important;
 }
