@@ -73,7 +73,10 @@
     // flex: 1;
     min-height: 800px;
     height: fit-content;
-
+    @include mobile {
+        //ofsetting the header being at the bottom not the top
+        margin-top: -60px;
+    }
     .sidenav {
         min-width: 240px;
         

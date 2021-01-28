@@ -13,7 +13,7 @@
     </div>
 
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
+        <mat-slide-toggle (change)="testClick($event)" [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
     </div>
     <div class="info-container">
         <mat-slide-toggle [(ngModel)]="matched">Matched with a Mentee</mat-slide-toggle>

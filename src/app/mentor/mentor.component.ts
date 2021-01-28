@@ -58,4 +58,8 @@ export class MentorComponent implements OnInit {
     this.userCompany = this.displayUserData.currentUserData.userData.company;
     this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
   };
+
+  testClick(event) {
+    console.log(`event: `, event);
+  }
 };
