@@ -13,29 +13,32 @@ export class BarChartComponent implements OnInit {
   public barChartData: any[];
   public barValues: any[];
   public innerWidth;
-  public showXAxisLabel;
-  public xAxisLabel;
-  public showYAxisLabel;
-  public yAxisLabel;
+  public showXAxisLabel : boolean;
+  public xAxisLabel : string;
+  public showYAxisLabel: boolean;
+  public yAxisLabel: string;
   public barChartHeight: number = 700;
   public barChartWidth: number = 400;
-  public showXAxis = true;
-  public showYAxis = true;
-  public gradient = false;
-  public showLegend = true;
-  public colors = ['#808080', '#505050'];
-  public view: any[] = [400, window.innerWidth * 0.8];
+  public showXAxis : boolean = true;
+  public showYAxis : boolean = true;
+  public gradient : boolean = false;
+  public showLegend : boolean = true;
+  public colors : Array<string> = ['#808080', '#505050'];
+  public view = [400, window.innerWidth * 0.8];
   public title: string = 'Bar Chart';
   colorScheme = {
     domain: this.colors
   };
-  theme: string = 'dark';
+  theme : 'dark' | 'light' = 'dark';
 
   constructor(private apiService: ApiService) {
     apiService.getTheme().subscribe((theme) => {
-      console.log('barchart themee: ', theme);
-      this.theme = theme;
-    })
+      if (theme === 'dark' || theme === 'light') {
+        this.theme = theme;
+      }
+    });
+    this.innerWidth = window.innerWidth;
+    this.innerWidth > 768 ? this.view = [innerWidth * 0.4, 400] : this.view = [innerWidth * 0.8, 400];
   }
   
   ngOnInit(): void {
@@ -54,9 +57,11 @@ export class BarChartComponent implements OnInit {
 
   // Window width listener
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event)  {
     this.innerWidth = window.innerWidth;
-    this.innerWidth > 768 ? this.view = [this.innerWidth * 0.4, 400] : this.view = [this.innerWidth * 0.8, 400]
+    console.log(`width listener: `, this.innerWidth);
+    this.innerWidth > 768 ? this.view = [this.innerWidth * 0.4, 400] : this.view = [this.innerWidth * 0.8, 400];
+    console.log(`viewL `, this.view);
   }
 
   onSelect(data): void {

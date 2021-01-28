@@ -13,25 +13,27 @@ import { PieChartData } from './pie-chart-data.model';
 export class PieChartComponent implements OnInit {
   @Input() incommingPieChartData: PieChartData;
   // pieChartData: any[];
-  public innerWidth;
+  public innerWidth : number;
   public view: any[] = [400, window.innerWidth * 0.8];
-  public pieValues;
-  public piegradient;
-  public pieshowLegend;
-  public showLabels; 
-  public isDoughnut;
+  public pieValues : Array<object>;
+  public piegradient : boolean;
+  public pieshowLegend : boolean;
+  public showLabels : boolean; 
+  public isDoughnut : boolean;
   public legendPosition: string = 'below';
-  public colors = ['#808080', '#606060', '#404040'];
+  public colors : Array<string> = ['#808080', '#606060', '#404040'];
   public title: string = "Pie Chart";
-  piecolorScheme = {
+  piecolorScheme : object = {
     domain: this.colors
   };
-  theme: string = 'dark';
+  theme : 'dark' | 'light' = 'dark';
   
   constructor(private apiService: ApiService) {
     apiService.getTheme().subscribe((theme) => {
       console.log(`theme: `, theme);
-      this.theme = theme;
+      if (theme === 'dark' || theme ==='light') {
+        this.theme = theme;
+      }
     })
   }
 
@@ -53,7 +55,7 @@ export class PieChartComponent implements OnInit {
 
    // Window width listener
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event : any) : void {
   this.innerWidth = window.innerWidth;
     this.innerWidth > 768 ? this.view = [this.innerWidth * 0.4, 400] : this.view = [this.innerWidth * 0.8, 400]
   }

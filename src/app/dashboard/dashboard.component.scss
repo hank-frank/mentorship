@@ -10,3 +10,20 @@
         justify-content: flex-start;
     }
 }
+
+.icon-close {
+    @include force-icon; 
+    font-size: 36px;
+    position: relative;
+    bottom: -50px;
+    left: calc(8% + 10px);
+    z-index: 50;
+
+    @include mobile {
+        left: calc(5% + 10px);
+    }
+
+    @include tiny {
+        left: calc(2% + 10px);
+    }
+}

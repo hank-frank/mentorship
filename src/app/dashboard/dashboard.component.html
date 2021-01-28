@@ -11,31 +11,12 @@
 
   <app-table [incommingAllUserData]="allUserData" color="primary"></app-table>
 
-  <div *ngIf="isMenteeDisplayed">
-    <button (click)="closeCardMentee()">Close</button>
+  <div *ngIf="isMenteeDisplayed" class="dashboard-card-container">
+    <mat-icon (click)="closeCardMentee()" class="icon-close">close</mat-icon>
     <app-mentee></app-mentee>
   </div>
-  <div *ngIf="isMentorDisplayed">
-    <button (click)="closeCardMentor()">Close</button>
+  <div *ngIf="isMentorDisplayed" class="dashboard-card-container">
+    <mat-icon (click)="closeCardMentor()" class="icon-close">close</mat-icon>
     <app-mentor></app-mentor>
   </div>
-
-  <!-- <app-mentor>
-</app-mentor> -->
-  <!-- 
-<mat-card class='table-card'>
-    <h4 class="table-title">All Users</h4>
-    <table>
-        <thead>
-            <tr>
-                <td>User Name</td> <td>Is finished?</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let e of allUserData">
-                <td>{{e.userData.name}}</td> <td>{{e.userData.isFinished}}</td>
-            </tr>
-        </tbody>
-    </table>
-</mat-card> -->
 </div>

@@ -1,9 +1,9 @@
-<mat-card class="mentee-card">
-    <div *ngIf="currentUserRole == 'admin'">
+<mat-card class="mentor-card">
+    <!-- <div *ngIf="currentUserRole == 'admin'">
         <button color="warn">Back to Dashboard</button>
-    </div>
+    </div> -->
     <div class="mentee-card-header">
-        <div class="user-image"></div>
+        <img class="user-image" src="../../assets/gritty-square.png" />
         <div class="name-title">
             <h4 mat-card-title>{{userName}}</h4>
             <p mat-card-subtitle>{{userCompany}}</p>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
+        <mat-slide-toggle (change)="testClick($event)" [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
     </div>
     <div class="info-container">
         <mat-slide-toggle [(ngModel)]="matched">Matched with a Mentee</mat-slide-toggle>

@@ -1,11 +1,14 @@
 <mat-card class="table-card">
     <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
-    <ngx-datatable class="tableCard"
-        (activate)="tableRowOnClick($event)" 
-        [rows]="tableRows" 
-        [columns]="tableColumns"
-        [rowClass]="getRowClass"
-        [headerHeight]="40"
-        [footerHeight]="40"
+    <ngx-datatable 
+    class="tableCard"
+    (activate)="tableRowOnClick($event)" 
+    [rows]="tableRows" 
+    [columns]="tableColumns"
+    [rowClass]="getRowClass"
+    [rowHeight]="'100%'"
+    [headerHeight]="'90px'"
+    [footerHeight]="80"
+    [ngClass]="theme === 'dark' ? 'dark' : 'light'"
     ></ngx-datatable>
 </mat-card>

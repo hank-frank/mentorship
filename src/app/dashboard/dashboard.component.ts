@@ -18,39 +18,27 @@ export class DashboardComponent implements OnInit {
   menteeBarChartData: BarChartData;
   mentorPieChartData: PieChartData;
   menteePieChartData: PieChartData;
-
   isMenteeDisplayed: boolean = false;
   isMentorDisplayed: boolean = false;
 
   constructor(private apiService: ApiService) {
     this.currentUserData = apiService.getUserData;
-    apiService.getUserData().subscribe(
-      data => {
+    apiService.getUserData().subscribe((data) => {
         this.currentUserData = data;
         this.allUserData = data.allUsers;
-        //console.log(data);
         this.mentorStats = data.currentUserData.stats.mentor;
         this.menteeStats = data.currentUserData.stats.mentee;
-      },
-      error => {
-        console.log(`subscription error: `, error);
-      }
+      },(error) => {console.log(`subscription error: `, error);}
     );
-    apiService.getIsMenteeDisplayed().subscribe(
-      data => {
+
+    apiService.getIsMenteeDisplayed().subscribe((data) => {
         this.isMenteeDisplayed = data;
-      },
-      error => {
-        console.log(`subscription error: `, error);
-      }
+      },(error) => {console.log(`subscription error: `, error);}
     );
-    apiService.getIsMentorDisplayed().subscribe(
-      data => {
+
+    apiService.getIsMentorDisplayed().subscribe((data) => {
         this.isMentorDisplayed = data;
-      },
-      error => {
-        console.log(`subscription error: `, error);
-      }
+      },(error) => {console.log(`subscription error: `, error);}
     );
   }
 
@@ -147,11 +135,14 @@ export class DashboardComponent implements OnInit {
       colors: ['#264653', '#2A9D8F', '#E9C46A'],
       title: 'Mentors'
     };
-  }
-  closeCardMentee(event) {
+  };
+  
+  closeCardMentee(event) : void {
     this.apiService.setIsMenteeDisplayed(false);
-  }
-  closeCardMentor(event) {
+  };
+
+  closeCardMentor(event) : void {
     this.apiService.setIsMentorDisplayed(false);
-  }
+  };
+
 }

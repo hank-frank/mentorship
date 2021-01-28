@@ -14,6 +14,10 @@ $image-size: 140px;
     }
 }
 
+.dashboard-card-container > :host > .mentee-card {
+    margin: 0 auto 36px auto;
+}
+
 .mentee-card-header {
     display: flex;
     flex-direction: row;

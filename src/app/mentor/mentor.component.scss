@@ -2,7 +2,7 @@
 
 $image-size: 140px;
 
-.mentee-card {
+.mentor-card {
     width: 80%;
     margin: 36px auto;
     display: flex;
@@ -12,6 +12,10 @@ $image-size: 140px;
     @include mobile {
         padding: 0 32px 32px 32px;
     }
+}
+
+.dashboard-card-container > :host > .mentor-card {
+    margin: 0 auto 36px auto;
 }
 
 .mentee-card-header {
