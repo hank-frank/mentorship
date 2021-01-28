@@ -6,6 +6,12 @@ import { DashboardComponent } from '../dashboard.component'
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
+
+
+
+
+
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',

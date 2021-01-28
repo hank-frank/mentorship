@@ -4,6 +4,9 @@ import { ApiService } from '../api.service';
 import { BarChartData } from './bar-chart/bar-chart-data.model';
 import { PieChartData } from './pie-chart/pie-chart-data.model';
 
+export class AppModule {
+}
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
