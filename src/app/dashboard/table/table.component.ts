@@ -51,12 +51,9 @@ export class TableComponent implements OnInit {
   };
 
   getRowClass = (row) => {
-    //This isn't working? https://stackblitz.com/edit/angular-ngx-datatable-row-color-tzzfb9?file=app%2Fapp.component.ts
-    // console.log(row.role)
       return {
         'mentee-row-color': row.role == 'mentee',
         'mentor-row-color': row.role == 'mentor',
-        // 'mentee-row-color': true
       };
   }
 

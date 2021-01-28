@@ -1,77 +1,44 @@
-<!-- <div class="header-container" color="primary">
+<div id="full-header">
+    <mat-toolbar color="primary">
+        <span>Mentorship</span>
+        <div class="header-container">
+            <button mat-button class="link-button" routerLink="/">Home</button>
+            <div *ngIf="isAuthenticated === true; else loginElse">
+                <button mat-button class="link-button" (click)="logout()">Logout</button>
+            </div>
+            <ng-template #loginElse>
+                <button mat-button class="link-button" routerLink="/login">Login</button>
+            </ng-template>
+            <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
+                <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
+            </div>
+            <ng-template #dashboardElse>
+                <button mat-button class="link-button dead-link">Dashboard</button>
+            </ng-template>
 
-    <h1 class="header-title">Mentorship</h1>
-    <button mat-button class="link-button" routerLink="/">Home</button>
-    <div *ngIf="isAuthenticated === true; else loginElse">
-        <button mat-button class="link-button" (click)="logout()">Logout</button>
-    </div>
-    <ng-template #loginElse>
-        <button mat-button class="link-button" routerLink="/login">Login</button>
-    </ng-template>
-    <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
-        <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
-    </div>
-    <ng-template #dashboardElse>
-        <button mat-button class="link-button dead-link">Dashboard</button>
-    </ng-template>
+            <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
+                <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
+            </div>
+            <ng-template #mentoreElse>
+                <button mat-button  class="link-button dead-link">Mentor</button>
+            </ng-template>
 
-    <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
-        <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
-    </div>
-    <ng-template #mentoreElse>
-        <button mat-button  class="link-button dead-link">Mentor</button>
-    </ng-template>
-
-    <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
-        <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
-    </div>
-    <ng-template #menteeeElse>
-        <button mat-button class="link-button dead-link">MenteeDead</button>
-    </ng-template>
-
-    <button (click)="testClick()">Test Button</button>
-    <button (click)="testClick2()">Test Button2</button>
-    <button mat-button (click)="logout()">Logout</button>
-</div> -->
-
-<mat-toolbar color="primary">
-    <span>Mentorship</span>
-    <div class="header-container">
-        <button mat-button class="link-button" routerLink="/">Home</button>
-        <div *ngIf="isAuthenticated === true; else loginElse">
-            <button mat-button class="link-button" (click)="logout()">Logout</button>
+            <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
+                <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
+            </div>
+            <ng-template #menteeeElse>
+                <button mat-button class="link-button dead-link">MenteeDead</button>
+            </ng-template>
+            <button (click)="testClick()">Test Button</button>
         </div>
-        <ng-template #loginElse>
-            <button mat-button class="link-button" routerLink="/login">Login</button>
-        </ng-template>
-        <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
-            <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
-        </div>
-        <ng-template #dashboardElse>
-            <button mat-button class="link-button dead-link">Dashboard</button>
-        </ng-template>
+        <span class="header-spacer"></span>
+        <mat-icon (click)="toggleTheme()">invert_colors</mat-icon>
+        <button mat-icon-button class="hamburger-icon" (click)="sidenav.toggle()" aria-label="icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
 
-        <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
-            <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
-        </div>
-        <ng-template #mentoreElse>
-            <button mat-button  class="link-button dead-link">Mentor</button>
-        </ng-template>
-
-        <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
-            <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
-        </div>
-        <ng-template #menteeeElse>
-            <button mat-button class="link-button dead-link">MenteeDead</button>
-        </ng-template>
-        <button (click)="testClick()">Test Button</button>
-    </div>
-    <span class="header-spacer"></span>
-    <mat-icon (click)="toggleTheme()">invert_colors</mat-icon>
-    <button mat-icon-button class="hamburger-icon" (click)="sidenav.toggle()" aria-label="icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-</mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" color="primary">
     <mat-sidenav #sidenav autoFocus="false" mode="over" position="end" [(opened)]="isMenuOpen" class="sidenav" (click)="onSidenavClick()">

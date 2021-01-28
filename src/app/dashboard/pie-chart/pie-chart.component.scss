@@ -4,12 +4,17 @@
     width: 40vw;
     margin: 16px;
     height: 540px;
-    // min-height: 400px;
+    // text-decoration-color: $light-text;
+
     @include mobile {
         width: 85%;
         margin: 16px auto;
     }
 }
+
+// .pie-chart-card.light > p {
+//     color: $dark-text;
+// }
 
 .chart-title {
     font-size: 24px;

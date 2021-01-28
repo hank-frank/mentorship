@@ -1,20 +1,3 @@
-<!-- <mat-card class='table-card'>
-    <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
-    <table>
-        <thead>
-            <tr>
-                <td *ngFor="let header of allUserData.columnHeaders">{{ header }}</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of allUserData">
-                <td [ngStyle]="user.tableRowColor" >{{ user.userData.name }}</td>
-                <td [ngStyle]="user.tableRowColor" >{{ user.userData.isFinished }}</td>
-            </tr>
-        </tbody>
-    </table>
-</mat-card> -->
-
 <mat-card class="table-card">
     <h4 class="table-title">{{ allUserData.tableTitle }}</h4>
     <ngx-datatable class="tableCard"
