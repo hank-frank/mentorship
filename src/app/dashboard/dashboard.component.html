@@ -15,14 +15,16 @@
     <button (click)="closeCardMentee()">Close</button>
     <app-mentee></app-mentee>
   </div>
+
   <div *ngIf="isMentorDisplayed">
     <button (click)="closeCardMentor()">Close</button>
     <app-mentor></app-mentor>
   </div>
+</div>
 
-  <!-- <app-mentor>
+<!-- <app-mentor>
 </app-mentor> -->
-  <!-- 
+<!-- 
 <mat-card class='table-card'>
     <h4 class="table-title">All Users</h4>
     <table>
@@ -38,4 +40,3 @@
         </tbody>
     </table>
 </mat-card> -->
-</div>
