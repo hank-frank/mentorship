@@ -1,14 +1,10 @@
+interface SingleBarData {
+        name: string;
+        value: number;
+}
+
 export interface BarChartData {
-    barValues: [
-        {
-            name: string;
-            value: number;
-        },
-        {
-            name: string;
-            value: number;
-        },
-    ];
+    barValues: SingleBarData[];
     showXAxisLabel: boolean;
     xAxisLabel: string;
     showYAxisLabel: boolean;

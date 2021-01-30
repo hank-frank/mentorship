@@ -1,23 +1,15 @@
+interface SinglePieData {
+    name: string;
+    value: number;
+}
+
 export interface PieChartData {
-    pieValues: [
-        {
-            name: string;
-            value: number;
-        },
-        {
-            name: string;
-            value: number;
-        },
-        {
-            name: string;
-            value: number;
-        },
-    ];
+    pieValues: Array<SinglePieData>;
     piegradient: boolean;
     pieshowLegend: boolean;
     showLabels: boolean;
     isDoughnut: boolean;
     legendPosition: string;
-    colors: [string, string, string];
+    colors: Array<string>;
     title: string;
 }
