@@ -14,7 +14,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "eslint-plugin-import",
+        // "eslint-plugin-import",
         "eslint-plugin-jsdoc",
         "@angular-eslint/eslint-plugin",
         "@angular-eslint/eslint-plugin-template",

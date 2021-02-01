@@ -41,6 +41,7 @@ export class BarChartComponent implements OnInit {
             }
         });
         this.innerWidth = window.innerWidth;
+        // eslint-disable-next-line no-restricted-globals
         this.innerWidth > 768 ? this.view = [innerWidth * 0.4, 400] : this.view = [innerWidth * 0.8, 400];
     }
 

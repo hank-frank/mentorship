@@ -14,6 +14,7 @@ import { ApiService } from './api.service';
 
 @Injectable()
 export class MentorshipHttpInterceptor implements HttpInterceptor {
+    // eslint-disable-next-line no-useless-constructor
     constructor(private toastr: ToastrService, private apiService: ApiService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req)

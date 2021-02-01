@@ -11,13 +11,13 @@ export class AppComponent implements OnInit {
     // _subscription;
     // currentUserData: any[any];
 
-    constructor(private apiService: ApiService) {
-    // this.currentUserData = apiService.getUserData;
-    // this._subscription = apiService.getUserData().subscribe((data) => {
-    //   // console.log('Subscribe is working App: ', data);
-    //   this.currentUserData = data;
-    // }, error => {console.log(`subscription error: `, error)});
-    }
+    // constructor(private apiService: ApiService) {
+    // // this.currentUserData = apiService.getUserData;
+    // // this._subscription = apiService.getUserData().subscribe((data) => {
+    // //   // console.log('Subscribe is working App: ', data);
+    // //   this.currentUserData = data;
+    // // }, error => {console.log(`subscription error: `, error)});
+    // }
 
     ngOnInit(): void {
     // only if youre logged in get your user Data.

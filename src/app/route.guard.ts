@@ -10,7 +10,9 @@ import { ApiService } from './api.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private apiService: ApiService, private router: Router) {}
+    // eslint-disable-next-line no-useless-constructor
+    constructor(private apiService: ApiService, private router: Router) {
+    }
 
     canActivate(
         route: ActivatedRouteSnapshot,
