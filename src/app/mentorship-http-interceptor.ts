@@ -48,7 +48,6 @@ export class MentorshipHttpInterceptor implements HttpInterceptor {
 //                 observer.next(res);
 //             } else {
 //                 console.log(`in else: `, req);
-
 //             }
 //         },
 //         (err: HttpErrorResponse) => {
