@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import { Injectable } from '@angular/core';
@@ -122,27 +123,26 @@ export class ApiService {
         this.userRole.next(role);
     }
 
-    public getTheme() : Observable<string> {
-        console.log(`ApiService::getTheme()`)
-        let currentTheme:string;
-        this.themeColor.subscribe(v => currentTheme = v);
-        
-        if(currentTheme === undefined){
-            currentTheme = localStorage.getItem(this.themeLocalStorageKey)
+    public getTheme(): Observable<string> {
+        let currentTheme: string;
+        this.themeColor.subscribe(color => currentTheme = color);
+        if (currentTheme === undefined) {
+            currentTheme = localStorage.getItem(this.themeLocalStorageKey);
             this.themeColor.next(currentTheme);
         }
-        return this.themeColor.asObservable();
-    };
 
-    public setTheme(theme: string) : void {
+        return this.themeColor.asObservable();
+    }
+
+    public setTheme(theme: string): void {
         console.log(`ApiService::setTheme('${theme})'`);
 
         this.themeColor.next(theme);
         localStorage.setItem(this.themeLocalStorageKey, theme);
-    };
+    }
 
     public login(username: string, password: string): void {
-    // console.log(`apiservice username: ${username} password: ${password}`);
+        // console.log(`apiservice username: ${username} password: ${password}`);
         this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials: true }).subscribe((data: AdminData | MentorData | MenteeData) => {
             if (data.currentUserData.userData.userId !== 0) {
                 this.setAuthStatusListener(true);
@@ -197,21 +197,21 @@ export class ApiService {
     }
 
     retrieveMenteeData(): void {
-        // console.log('api.service:  retrieveMenteeData()')
         const retreivedUserData = JSON.parse(localStorage.getItem(this.menteeLocalStorageKey)) as MenteeData;
         if (retreivedUserData != null) {
             this.setMenteeDisplayData(retreivedUserData);
         }
-        // return retreivedUserData;
     }
 
     retrieveMentorData(): void {
-        // console.log('api.service:  retrieveMentorData()')
         const retreivedUserData = JSON.parse(localStorage.getItem(this.mentorLocalStorageKey)) as MentorData;
         if (retreivedUserData != null) {
             this.setMentorDisplayData(retreivedUserData);
         }
-        // return retreivedUserData;
+    }
+
+    postUserData(data: any): void {
+        console.log('postingdata: ', data);
     }
 
     logout(): void {
