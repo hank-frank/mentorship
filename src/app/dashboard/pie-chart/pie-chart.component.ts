@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable @typescript-eslint/ban-types */
 import { Component, OnInit, NgModule, HostListener, Input } from '@angular/core';
 // import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -16,7 +15,6 @@ import { PieChartData } from './pie-chart-data.model';
 
 export class PieChartComponent implements OnInit {
     @Input() incommingPieChartData: PieChartData;
-    // pieChartData: any[];
     public innerWidth: number;
     public view: Array<number> = [400, window.innerWidth * 0.8];
     public pieValues: Array<{name: string; value: number}>;
@@ -27,7 +25,7 @@ export class PieChartComponent implements OnInit {
     public legendPosition = 'below';
     public colors: Array<string> = ['#808080', '#606060', '#404040'];
     public title = 'Pie Chart';
-    piecolorScheme: object = {
+    piecolorScheme = {
         domain: this.colors
     };
     theme: 'dark' | 'light' = 'dark';

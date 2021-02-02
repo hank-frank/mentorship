@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { Component, OnInit, Input, HostListener } from '@angular/core';
@@ -13,7 +12,6 @@ import { ApiService } from '../../api.service';
 
 export class BarChartComponent implements OnInit {
     @Input() incomingBarChartData: BarChartData;
-    // public barChartData: BarChartData;
     public barValues: Array<{name: string; value: number}>;
     public innerWidth;
     public showXAxisLabel: boolean;
@@ -41,7 +39,7 @@ export class BarChartComponent implements OnInit {
             }
         });
         this.innerWidth = window.innerWidth;
-        this.innerWidth > 768 ? this.view = [innerWidth * 0.4, 400] : this.view = [innerWidth * 0.8, 400];
+        this.innerWidth > 768 ? this.view = [this.innerWidth * 0.4, 400] : this.view = [this.innerWidth * 0.8, 400];
     }
 
     ngOnInit(): void {
@@ -55,17 +53,17 @@ export class BarChartComponent implements OnInit {
         this.colorScheme = {
             domain: this.colors
         };
-        this.onResize({});
+        this.onResize(new Event(''));
     }
 
     // Window width listener
     @HostListener('window:resize', ['$event'])
-    onResize(event: any): void {
+    onResize(event: Event): void {
         this.innerWidth = window.innerWidth;
         this.innerWidth > 768 ? this.view = [this.innerWidth * 0.4, 400] : this.view = [this.innerWidth * 0.8, 400];
     }
 
-    onSelect(data: any): void {
+    onSelect(data: Event): void {
         console.log('Item clicked', JSON.parse(JSON.stringify(data)));
     }
 

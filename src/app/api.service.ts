@@ -204,6 +204,10 @@ export class ApiService {
         // return retreivedUserData;
     }
 
+    postUserData(data: any): any{
+        console.log('in ppost user data: ', data);
+    }
+
     logout(): void {
         console.log('getting logged out');
         this.isAuthenticated = false;
