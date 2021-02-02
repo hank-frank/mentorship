@@ -8,8 +8,6 @@ import { MenteeData } from '../interfaces/menteeData.model';
 import { MentorData } from '../interfaces/mentorData.model';
 import { AdminData } from '../interfaces/adminData.model';
 
-
-
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
