@@ -1,0 +1,117 @@
+@import '../../global.scss';
+
+$image-size: 140px;
+
+.mentee-card {
+    width: 80%;
+    margin: 36px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 32px;
+    @include mobile {
+        padding: 0 32px 32px 32px;
+    }
+}
+
+.dashboard-card-container > :host > .mentee-card {
+    margin: 0 auto 36px auto;
+}
+
+.mentee-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5%;
+    margin: 0;
+    // margin-bottom: 32px;
+    @include tiny {
+        flex-direction: column;
+        margin: 0 auto 32px auto;
+    }
+}
+
+.user-image {
+    width: $image-size;
+    height: $image-size;
+    border-radius: 50%;
+    background-color: grey;
+    margin-right: 16px;
+    @include tiny {
+        margin: 16px auto;
+    }
+}
+
+.name-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 32px;
+    @include tiny {
+        text-align: center;
+        margin-left: 0;
+    }
+}
+
+.name-title > h4 {
+    font-size: 46px;
+    font-weight: bold;
+    margin: 16px 0 26px 0;
+}
+
+.name-title > p  {
+    font-size: 18px;
+    margin: 0;  
+}
+
+.name-title > p:not(:first-of-type)  {
+    margin: 8px 0 0 0;  
+}
+
+.info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 32px 0 0 40%;
+    font-size: 18px;
+    font-weight: bold;
+    width: fit-content;
+    @include lrg {
+        margin: 32px 0 0 40%;
+    }
+    @include med {
+        margin: 32px 0 0 30%;
+    }
+    @include mobile {
+        margin: 32px 0 0 20%;
+    }
+    @include tiny {
+        margin: 32px 0 0 5%;
+    }
+}
+
+.info-container > label {
+    margin-left: 8px;
+}
+
+.check-text {
+    margin-left: 16px;
+    font-weight: 400;
+}
+
+.user-text {
+    font-size: 18px;
+}
+
+.user-text-numbers {
+    font-size: 46px;
+    margin-right: 16px;
+}
+
+.star {
+    font-size: 46px;
+    margin-top: -12px;
+    margin-left: -49px;
+    margin-right: 24px;
+    color: $warn;
+}

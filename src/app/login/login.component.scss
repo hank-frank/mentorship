@@ -1,0 +1,34 @@
+@import '../../global.scss';
+
+.login-card {
+    width: 70%;
+    margin: 48px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+// .login-card > input {
+//     font-size: 18px;
+//     width: 90%;
+//     margin: 16px auto;
+//     background-color: $dark-bg-lighter-10;
+//     color: $light-text
+// }
+
+
+.login-error {
+    font-size: 18px;
+    color: $warn;
+    text-align: center;
+    margin: 32px 0 16px 0 !important;
+}
+
+// .mat-form-field-underline {
+//     background-color: white;
+// }
+
+// .mat-form-field-empty.mat-form-field-label {
+//     color: green;
+// }

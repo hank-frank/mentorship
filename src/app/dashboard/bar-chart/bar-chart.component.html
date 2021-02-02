@@ -1,0 +1,19 @@
+<mat-card class="bar-chart-card" [ngClass]="theme === 'dark' ? 'dark' : 'light'">
+  <p class="chart-title">{{ title }}</p>
+  <ngx-charts-bar-vertical
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="barValues"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [legendPosition]="'below'"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-bar-vertical>
+</mat-card>

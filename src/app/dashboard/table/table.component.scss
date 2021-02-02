@@ -1,0 +1,112 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+@import '../../../global.scss';
+
+.table-card{
+    width: fit-content;
+    max-width: 80vw;
+    margin: 16px auto 32px auto;
+    padding: 3px;
+}
+
+.mat-card>:first-child, .mat-card-content>:first-child {
+    padding-top: 15px;
+    margin-bottom: -10px;
+}
+
+.table-title {
+    font-size: 24px;
+    margin: 6px auto;
+    text-align: center;
+}
+
+.datatable-footer-inner {
+    background-color: aquamarine;
+    color: black;
+}
+
+::ng-deep .ngx-datatable.tableCard {
+    background-color: $dark-bg-lighter-10;
+    color: $light-text;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: 32px 0 0 0;
+    width: 100%;
+}
+
+::ng-deep .ngx-datatable.tableCard.light {
+    background-color: $light-bg-darker-5;
+    color: $dark-text;
+}
+
+::ng-deep .datatable-header {
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 18px;
+    // padding: 16px;
+    .datatable-header-cell {
+        background-color: $primary;
+        color: $light-text;
+        border-radius: none;
+        padding: 16px;
+        border-bottom: $dark-bg-lighter-10;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+}
+
+::ng-deep .ngx-datatable.light {
+    .datatable-header {
+        .datatable-header-cell {
+            background-color: $light-bg-darker-5;
+            color: $dark-text;
+            border-bottom: $light-bg-darker-5;
+        }
+    }
+}
+
+//each table cell
+::ng-deep .datatable-body-cell {
+    border-radius: none;
+}
+
+::ng-deep .mentee-row-color {
+    // background-color: $accent;
+    background: #9debe285;
+    border-bottom: 1px solid $accent-darker;
+    color: $light-text;
+    font-size: 18px;
+    padding: 8px 0;
+}
+
+::ng-deep .mentee-row-color .selected {
+    background-color: darken($accent, 5%);
+}
+
+::ng-deep .mentor-row-color {
+    background-color: #6aa59ea3;
+    padding: 8px 0;
+    color: $light-text;
+    font-size: 18px;
+    border-bottom: 1px solid darken($accent-darker, 10%);
+}
+
+::ng-deep .mentor-row-color .selected {
+    background-color: darken($accent, 20%);
+}
+
+::ng-deep [title="launch"] {
+    @include force-icon;
+}
+
+::ng-deep .datatable-header-cell:last-of-type  > div > span{
+    display: none;
+}
+
+:host ::ng-deep .datatable-body-row.active .datatable-row-group {
+    background-color: red !important;
+}

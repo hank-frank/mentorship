@@ -1,0 +1,24 @@
+@import '../../../global.scss';
+
+.pie-chart-card {
+    width: 40vw;
+    margin: 16px;
+    height: 540px;
+    // text-decoration-color: $light-text;
+
+    @include mobile {
+        width: 85%;
+        margin: 16px auto;
+    }
+}
+
+// .pie-chart-card.light > p {
+//     color: $dark-text;
+// }
+
+.chart-title {
+    font-size: 24px;
+    margin: 6px auto;
+    text-align: center;
+}
+

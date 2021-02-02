@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./src/custom-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -91,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./src/custom-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "mentorship"
+  "defaultProject": "mentorship",
+  "cli": {
+    "analytics": "89e21b4b-29f2-4ed7-8112-1c2123ebce8f"
+  }
 }

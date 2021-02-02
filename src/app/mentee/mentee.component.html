@@ -1,0 +1,45 @@
+<mat-card class="mentee-card">
+    <div class="mentee-card-header">
+        <img class="user-image" src="../../assets/gritty-square.png" />
+        <div class="name-title">
+            <h4 mat-card-title>{{userName}}</h4>
+            <p mat-card-subtitle>{{userCompany}}</p>
+            <p mat-card-subtitle>{{userJobTitle}}</p>
+
+        </div>
+    </div>
+
+    <div class="info-container">
+        <mat-slide-toggle [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
+    </div>
+    <div class="info-container">
+        <mat-slide-toggle [(ngModel)]="matched">Matched with a Mentor</mat-slide-toggle>
+    </div>
+    <div class="info-container">
+        <mat-slide-toggle [(ngModel)]="introduced">Introduced yourself</mat-slide-toggle>
+    </div>
+    <div class="info-container">
+        <mat-slide-toggle [(ngModel)]="schedule">Scheduled a session</mat-slide-toggle>
+    </div>
+    <div class="info-container">
+        <mat-slide-toggle [(ngModel)]="smart">SMART Goals</mat-slide-toggle>
+    </div>
+
+    <div class="info-container">
+        <p class="user-text"><span class="user-text-numbers">{{sessions}}/{{sessionsPossible}}</span>Sessions</p>
+    </div>
+    <div class="info-container">
+        <p class="user-text"><span class="user-text-numbers">{{lifetimeSessions}}/{{lifetimeSessionsPossible}}</span>Lifetime Sessions</p>
+    </div>
+    <div class="info-container">
+        <mat-icon class="star">star</mat-icon>
+        <p class="user-text"><span class="user-text-numbers">{{lifetimeSessions}}</span>Rating</p>
+    </div>
+</mat-card>
+
+<!-- this is for hte end of each table row.  -->
+<!-- <mat-icon>launch</mat-icon> -->
+
+
+
+

@@ -1,0 +1,75 @@
+<div id="full-header">
+    <mat-toolbar color="primary">
+        <span class="header-main-title">Mentorship</span>
+        <div class="header-container">
+            <button mat-button class="link-button" routerLink="/">Home</button>
+            <ng-template #loginElse>
+                <button mat-button class="link-button" routerLink="/login">Login</button>
+            </ng-template>
+            <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
+                <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
+            </div>
+            <ng-template #dashboardElse>
+                <button mat-button class="link-button dead-link">Dashboard</button>
+            </ng-template>
+
+            <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
+                <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
+            </div>
+            <ng-template #mentoreElse>
+                <button mat-button  class="link-button dead-link">Mentor</button>
+            </ng-template>
+
+            <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
+                <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
+            </div>
+            <ng-template #menteeeElse>
+                <button mat-button class="link-button dead-link">MenteeDead</button>
+            </ng-template>
+            <div *ngIf="isAuthenticated === true; else loginElse">
+                <button mat-button class="link-button" (click)="logout()">Logout</button>
+            </div>
+        </div>
+        <span class="header-spacer"></span>
+        <mat-icon class="theme-logo" (click)="toggleTheme()">invert_colors</mat-icon>
+        <button mat-icon-button class="hamburger-icon" (click)="sidenav.toggle()" aria-label="icon-button with menu icon">
+            <mat-icon class="hamburger-icon">menu</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
+<mat-sidenav-container class="sidenav-container" color="primary">
+    <mat-sidenav #sidenav autoFocus="false" mode="over" position="end" [(opened)]="isMenuOpen" class="sidenav" (click)="onSidenavClick()">
+        <div id="sidenav-flex">
+            <button mat-button class="link-button" routerLink="/">Home</button>
+            <ng-template #loginElse>
+                <button mat-button class="link-button" routerLink="/login">Login</button>
+            </ng-template>
+            <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
+                <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
+            </div>
+            <ng-template #dashboardElse>
+                <button mat-button class="link-button dead-link">Dashboard</button>
+            </ng-template>
+            <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
+                <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
+            </div>
+            <ng-template #mentoreElse>
+                <button mat-button  class="link-button dead-link">Mentor</button>
+            </ng-template>
+            <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
+                <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
+            </div>
+            <ng-template #menteeeElse>
+                <button mat-button class="link-button dead-link">MenteeDead</button>
+            </ng-template>
+            <div *ngIf="isAuthenticated === true; else loginElse">
+                <button mat-button class="link-button" (click)="logout()">Logout</button>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

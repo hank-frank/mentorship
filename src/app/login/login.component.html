@@ -1,0 +1,15 @@
+<mat-card class="login-card">
+    <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput [(ngModel)]="username" placeholder="Scooter@sdcs.io" color="warn">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="password" placeholder="password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="submit()">Login</button>
+    <div *ngIf="isLoggedInErrorMessage">
+        <p class="login-error">{{errorMessage}}</p>
+    </div>
+</mat-card>
