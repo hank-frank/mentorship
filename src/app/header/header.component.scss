@@ -87,7 +87,7 @@ mat-toolbar {
         margin-top: -60px;
     }
     .sidenav {
-        min-width: 240px;
+        width: 50%;
         
         a {
             display: block;
@@ -110,7 +110,7 @@ mat-toolbar {
         position: fixed;
         justify-content: space-evenly;
         bottom: 60px;
-        width: 240px;
+        width: 50%;
         flex-direction: column-reverse;
         
     }
@@ -141,7 +141,7 @@ mat-toolbar {
     cursor: pointer;
 }
 
-mat-sidenav-container {
-    display: flex;
-    justify-content: space-around;
-}
+// mat-sidenav-container {
+//     display: flex;
+//     justify-content: space-around;
+// }
