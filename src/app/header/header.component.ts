@@ -1,5 +1,9 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Renderer2 } from '@angular/core';
+import { MAT_BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR } from '@angular/material/button-toggle';
+import { Button } from 'protractor';
 import { ApiService } from '../api.service';
+
+
 
 @Component({
   selector: 'app-header',
@@ -36,9 +40,17 @@ export class HeaderComponent implements OnInit {
     };
   };
 
+
+
+
   onSidenavClick(): void {
     this.isMenuOpen = false;
   };
+
+
+
+
+  
 
   toggleTheme() : void {
     if (this.darkTheme) {
@@ -51,6 +63,9 @@ export class HeaderComponent implements OnInit {
       this.apiService.setTheme('dark');
     }
   };
+
+
+
 
   testClick() : void {
     console.log(`clickevent: `, this.currentUserRole,` isAuthenticated: `, this.isAuthenticated);

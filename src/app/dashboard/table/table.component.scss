@@ -17,6 +17,11 @@
     text-align: center;
 }
 
+.datatable-footer-inner {
+    background-color: aquamarine;
+    color: black;
+}
+
 
 ::ng-deep .ngx-datatable.tableCard {
     background-color: $dark-bg-lighter-10;
@@ -42,7 +47,7 @@
     font-size: 18px;
     // padding: 16px;
     .datatable-header-cell {
-        background-color: $dark-bg-lighter-20;
+        background-color: $primary;
         color: $light-text;
         border-radius: none;
         padding: 16px;
@@ -67,8 +72,8 @@
 }
 
 ::ng-deep .mentee-row-color {
-    background-color: $accent;
-    background: $accent;
+    // background-color: $accent;
+    background: #9debe285;
     border-bottom: 1px solid $accent-darker;
     color: $light-text;
     font-size: 18px;
@@ -80,7 +85,7 @@
 }
 
 ::ng-deep .mentor-row-color {
-    background-color: darken($accent, 10%);
+    background-color: #6aa59ea3;
     padding: 8px 0;
     color: white;
     font-size: 18px;

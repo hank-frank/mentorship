@@ -13,28 +13,36 @@
     }
 }
 
+mat-toolbar {
+    height: 60px;
+}
+
 .header-container {
     width: 100vw;
     height: fit-content;
-    color: white;
+    color: rgb(235, 232, 232);
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: nowrap;
     @include mobile {
         flex-direction: column;
         display: none;
     }
 }
-
-.header-container > button:last-of-type {
-    height: 50px;
-    background-color: $warn;
-    color: white;
-    border: none;
-    margin: auto 0;
-    height: 60px;
+.link-button {
+    letter-spacing: 3px;
+    font-weight: 600%;
 }
+
+// .header-container > button:last-of-type {
+//     height: 50px;
+//     background-color: $warn;
+//     color: white;
+//     border: none;
+//     margin: auto 0;
+//     height: 60px;
+// }
 
 .header-container > h1 {
     margin: 10px;
@@ -50,7 +58,7 @@
 
 .link-button  {
     margin: 0 8px;
-    height: 60px;
+    height: 18vh;
 
     @include mobile {
         left: 50%;
@@ -68,6 +76,7 @@
 .header-spacer {
     flex: 1 1 auto;
 }
+
 
 .sidenav-container {
     // flex: 1;
@@ -91,8 +100,6 @@
     main {
         padding: 18px 24px;
     }
-
-    
 }
 
 #sidenav-flex {
@@ -100,18 +107,41 @@
     flex-direction: column;
     justify-content: flex-start;
     @include mobile {
-        justify-content: flex-end;
         position: fixed;
+        justify-content: space-evenly;
         bottom: 60px;
         width: 240px;
         flex-direction: column-reverse;
+        
     }
 }
 
-#sidenav-flex > button:last-of-type {
-    height: 60px;
-    background-color: $warn;
-    color: white;
-    border: none;
+// #sidenav-flex > button:last-of-type {
+//     height: 60px;
+//     background-color: $warn;
+//     color: white;
+//     border: none;
+// }
+
+.header-main-title {
+    letter-spacing: 5px;
+    // text-size-adjust: 25px;
+    color: rgb(235, 232, 232);
+    padding: 0px 5px;
 }
 
+.hamburger-icon {
+    color: rgb(235, 232, 232);
+    padding: 0px 5px;
+}
+
+.theme-logo {
+    color: rgb(235, 232, 232);
+    padding: 5px;
+    cursor: pointer;
+}
+
+mat-sidenav-container {
+    display: flex;
+    justify-content: space-around;
+}
