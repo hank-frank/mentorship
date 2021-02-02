@@ -8,7 +8,12 @@
     width: fit-content;
     max-width: 80vw;
     margin: 16px auto 32px auto;
-    padding: 32px;
+    padding: 3px;
+}
+
+.mat-card>:first-child, .mat-card-content>:first-child {
+    padding-top: 15px;
+    margin-bottom: -10px;
 }
 
 .table-title {
@@ -85,7 +90,7 @@
 ::ng-deep .mentor-row-color {
     background-color: #6aa59ea3;
     padding: 8px 0;
-    color: white;
+    color: $light-text;
     font-size: 18px;
     border-bottom: 1px solid darken($accent-darker, 10%);
 }
