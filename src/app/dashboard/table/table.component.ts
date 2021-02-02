@@ -12,9 +12,11 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 
+
 import { MenteeData } from '../../interfaces/menteeData.model';
 import { MentorData } from '../../interfaces/mentorData.model';
 import { TableUsers } from 'src/app/interfaces/tableAllUsers.model';
+
 
 @Component({
     selector: 'app-table',
@@ -22,6 +24,7 @@ import { TableUsers } from 'src/app/interfaces/tableAllUsers.model';
     styleUrls: ['./table.component.scss'],
     // encapsulation: ViewEncapsulation.None,
 })
+
 export class TableComponent implements OnInit {
     @Input() incommingAllUserData: Array<TableUsers>;
     allUserData: Array<TableUsers>;
@@ -31,6 +34,7 @@ export class TableComponent implements OnInit {
     // selected = [];
     theme: 'dark' | 'light' = 'dark';
     tableTitle = 'All Users';
+
 
     constructor(
         private apiService: ApiService,
@@ -66,6 +70,7 @@ export class TableComponent implements OnInit {
         this.tableRows = tableRowArr;
     }
 
+
     getRowClass = (row: any) => ({
         'mentee-row-color': row.role === 'mentee',
         'mentor-row-color': row.role === 'mentor',
@@ -75,6 +80,7 @@ export class TableComponent implements OnInit {
     // onSelect({ selected }) {
     //   console.log('Select Event', selected, this.selected);
     // }
+
 
     tableRowOnClick(event): void {
     // This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
@@ -90,6 +96,7 @@ export class TableComponent implements OnInit {
                     //     currentUserData: this.allUserData[i],
                     // });
 
+
                     if (this.allUserData[i].userData.role === 'mentee') {
                         const formattedUserDataObject = ({
                             currentUserData: this.allUserData[i]
@@ -97,6 +104,7 @@ export class TableComponent implements OnInit {
                         this.apiService.setMenteeDisplayData(formattedUserDataObject as MenteeData);
                         this.apiService.setIsMenteeDisplayed(true);
                         // this.router.navigate(['./mentee']);
+
 
                     } else if (this.allUserData[i].userData.role === 'mentor') {
                         const formattedUserDataObject = ({
@@ -108,6 +116,7 @@ export class TableComponent implements OnInit {
                     }
                 }
             }
+
         }
     }
 

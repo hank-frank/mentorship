@@ -8,7 +8,12 @@
     width: fit-content;
     max-width: 80vw;
     margin: 16px auto 32px auto;
-    padding: 32px;
+    padding: 3px;
+}
+
+.mat-card>:first-child, .mat-card-content>:first-child {
+    padding-top: 15px;
+    margin-bottom: -10px;
 }
 
 .table-title {
@@ -17,6 +22,10 @@
     text-align: center;
 }
 
+.datatable-footer-inner {
+    background-color: aquamarine;
+    color: black;
+}
 
 ::ng-deep .ngx-datatable.tableCard {
     background-color: $dark-bg-lighter-10;
@@ -26,7 +35,6 @@
     text-align: center;
     margin: 32px 0 0 0;
     width: 100%;
-    
 }
 
 ::ng-deep .ngx-datatable.tableCard.light {
@@ -38,18 +46,18 @@
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-
     font-size: 18px;
     // padding: 16px;
     .datatable-header-cell {
-        background-color: $dark-bg-lighter-20;
+        background-color: $primary;
         color: $light-text;
         border-radius: none;
         padding: 16px;
         border-bottom: $dark-bg-lighter-10;
+        letter-spacing: 3px;
+        text-transform: uppercase;
     }
 }
-
 
 ::ng-deep .ngx-datatable.light {
     .datatable-header {
@@ -57,8 +65,8 @@
             background-color: $light-bg-darker-5;
             color: $dark-text;
             border-bottom: $light-bg-darker-5;
+        }
     }
-}
 }
 
 //each table cell
@@ -67,8 +75,8 @@
 }
 
 ::ng-deep .mentee-row-color {
-    background-color: $accent;
-    background: $accent;
+    // background-color: $accent;
+    background: #9debe285;
     border-bottom: 1px solid $accent-darker;
     color: $light-text;
     font-size: 18px;
@@ -80,9 +88,9 @@
 }
 
 ::ng-deep .mentor-row-color {
-    background-color: darken($accent, 10%);
+    background-color: #6aa59ea3;
     padding: 8px 0;
-    color: white;
+    color: $light-text;
     font-size: 18px;
     border-bottom: 1px solid darken($accent-darker, 10%);
 }

@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.apiService.retrieveUserData();
 
+
         this.mentorBarChartData = {
             barValues: [
                 {
@@ -69,6 +70,7 @@ export class DashboardComponent implements OnInit {
             colors: ['#264653', '#2A9D8F'],
             title: 'Mentors'
         };
+
 
         this.menteeBarChartData = {
             barValues: [

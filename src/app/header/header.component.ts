@@ -1,9 +1,13 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Renderer2 } from '@angular/core';
+import { MAT_BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR } from '@angular/material/button-toggle';
+import { Button } from 'protractor';
 import { ApiService } from '../api.service';
+
 
 import { MenteeData } from '../interfaces/menteeData.model';
 import { MentorData } from '../interfaces/mentorData.model';
 import { AdminData } from '../interfaces/adminData.model';
+
 
 
 @Component({
@@ -11,7 +15,9 @@ import { AdminData } from '../interfaces/adminData.model';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
+
     @Input() currentUserData: MentorData | MenteeData | AdminData;
     @Input() currentUserRole: string;
     @Input() isAuthenticated: boolean;
@@ -33,7 +39,9 @@ export class HeaderComponent implements OnInit {
         apiService.getUserRole().subscribe((role: string) => {
             this.currentUserRole = role;
         });
+
     }
+
 
     ngOnInit(): void {
         if (this.isAuthenticated){
@@ -64,5 +72,6 @@ export class HeaderComponent implements OnInit {
     logout(): void {
         this.apiService.logout();
     }
+
 
 }
