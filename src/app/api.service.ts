@@ -122,14 +122,24 @@ export class ApiService {
         this.userRole.next(role);
     }
 
-    public getTheme(): Observable<string> {
+    public getTheme() : Observable<string> {
+        console.log(`ApiService::getTheme()`)
+        let currentTheme:string;
+        this.themeColor.subscribe(v => currentTheme = v);
+        
+        if(currentTheme === undefined){
+            currentTheme = localStorage.getItem(this.themeLocalStorageKey)
+            this.themeColor.next(currentTheme);
+        }
         return this.themeColor.asObservable();
-    }
+    };
 
-    public setTheme(theme: string): void {
+    public setTheme(theme: string) : void {
+        console.log(`ApiService::setTheme('${theme})'`);
+
         this.themeColor.next(theme);
         localStorage.setItem(this.themeLocalStorageKey, theme);
-    }
+    };
 
     public login(username: string, password: string): void {
     // console.log(`apiservice username: ${username} password: ${password}`);
