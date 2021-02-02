@@ -30,19 +30,11 @@ mat-toolbar {
         display: none;
     }
 }
+
 .link-button {
     letter-spacing: 3px;
     font-weight: 600%;
 }
-
-// .header-container > button:last-of-type {
-//     height: 50px;
-//     background-color: $warn;
-//     color: white;
-//     border: none;
-//     margin: auto 0;
-//     height: 60px;
-// }
 
 .header-container > h1 {
     margin: 10px;
@@ -59,7 +51,6 @@ mat-toolbar {
 .link-button  {
     margin: 0 8px;
     height: 18vh;
-
     @include mobile {
         left: 50%;
         transform: translateX(-50%)
@@ -77,9 +68,7 @@ mat-toolbar {
     flex: 1 1 auto;
 }
 
-
 .sidenav-container {
-    // flex: 1;
     min-height: 800px;
     height: fit-content;
     @include mobile {
@@ -88,7 +77,6 @@ mat-toolbar {
     }
     .sidenav {
         width: 50%;
-        
         a {
             display: block;
             padding: 6px 24px;
@@ -96,7 +84,6 @@ mat-toolbar {
             text-align: left;
         }
     }
-
     main {
         padding: 18px 24px;
     }
@@ -116,13 +103,6 @@ mat-toolbar {
     }
 }
 
-// #sidenav-flex > button:last-of-type {
-//     height: 60px;
-//     background-color: $warn;
-//     color: white;
-//     border: none;
-// }
-
 .header-main-title {
     letter-spacing: 5px;
     // text-size-adjust: 25px;
@@ -140,8 +120,3 @@ mat-toolbar {
     padding: 5px;
     cursor: pointer;
 }
-
-// mat-sidenav-container {
-//     display: flex;
-//     justify-content: space-around;
-// }

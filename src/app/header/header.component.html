@@ -29,7 +29,6 @@
             <div *ngIf="isAuthenticated === true; else loginElse">
                 <button mat-button class="link-button" (click)="logout()">Logout</button>
             </div>
-            <!-- <button (click)="testClick()">Test Button</button> -->
         </div>
         <span class="header-spacer"></span>
         <mat-icon class="theme-logo" (click)="toggleTheme()">invert_colors</mat-icon>
@@ -38,16 +37,6 @@
         </button>
     </mat-toolbar>
 </div>
-
-
-
-
-
-
-
-
-
-
 <mat-sidenav-container class="sidenav-container" color="primary">
     <mat-sidenav #sidenav autoFocus="false" mode="over" position="end" [(opened)]="isMenuOpen" class="sidenav" (click)="onSidenavClick()">
         <div id="sidenav-flex">
@@ -58,21 +47,15 @@
             <div *ngIf="currentUserRole === 'admin'; else dashboardElse">
                 <button mat-button class="link-button" routerLink="/dashboard">Dashboard</button>
             </div>
-
-
             <ng-template #dashboardElse>
-
                 <button mat-button class="link-button dead-link">Dashboard</button>
-                
             </ng-template>
-
             <div *ngIf="currentUserRole === 'mentor' || currentUserRole === 'admin'; else mentoreElse">
                 <button mat-button class="link-button" routerLink="/mentor">Mentor</button>
             </div>
             <ng-template #mentoreElse>
                 <button mat-button  class="link-button dead-link">Mentor</button>
             </ng-template>
-
             <div *ngIf="currentUserRole === 'mentee' || currentUserRole === 'admin'; else menteeeElse">
                 <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
             </div>
@@ -83,12 +66,6 @@
                 <button mat-button class="link-button" (click)="logout()">Logout</button>
             </div>
         </div>
-
-
-
-
-
-
     </mat-sidenav>
     <mat-sidenav-content>
         <main>

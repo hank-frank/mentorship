@@ -6,12 +6,14 @@ import { DashboardComponent } from '../dashboard.component'
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   // encapsulation: ViewEncapsulation.None,
 })
+
 export class TableComponent implements OnInit {
   @Input() incommingAllUserData;
   allUserData: any[any];
@@ -25,12 +27,12 @@ export class TableComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private dashboard: DashboardComponent
-    ) {
-      apiService.getTheme().subscribe((theme) => {
-        if (theme === 'dark' || theme === 'light') {
-          this.theme = theme;
-        }
-      })
+  ) {
+    apiService.getTheme().subscribe((theme) => {
+      if (theme === 'dark' || theme === 'light') {
+        this.theme = theme;
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -42,24 +44,24 @@ export class TableComponent implements OnInit {
         name: this.allUserData[i].userData.name,
         completed: this.allUserData[i].userData.completed,
         role: this.allUserData[i].userData.role,
-        click: '<mat-icon>launch</mat-icon>' 
+        click: '<mat-icon>launch</mat-icon>'
       });
     };
 
     this.tableColumns = [
-      { name: this.allUserData.columnHeaders[0] }, 
+      { name: this.allUserData.columnHeaders[0] },
       { name: this.allUserData.columnHeaders[1] },
-      {name : 'click'}
+      { name: 'click' }
     ];
 
     this.tableRows = tableRowArr;
   };
 
   getRowClass = (row: any) => {
-      return {
-        'mentee-row-color': row.role == 'mentee',
-        'mentor-row-color': row.role == 'mentor',
-      };
+    return {
+      'mentee-row-color': row.role == 'mentee',
+      'mentor-row-color': row.role == 'mentor',
+    };
   };
 
   //puts selected rows into an array, not sure how to style from that
@@ -67,10 +69,10 @@ export class TableComponent implements OnInit {
   //   console.log('Select Event', selected, this.selected);
   // }
 
-  tableRowOnClick(event) : void {
+  tableRowOnClick(event): void {
     //This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
 
-    if(event.type === 'click'){
+    if (event.type === 'click') {
       let clickedUserName = event.row.name;
       console.log(`clicked table row: `, clickedUserName, this.allUserData[0]);
       for (let i = 0; i < this.allUserData.length; i++) {
@@ -85,7 +87,7 @@ export class TableComponent implements OnInit {
             this.apiService.setMenteeDisplayData(formattedUserDataObject);
             this.apiService.setIsMenteeDisplayed(true);
             // this.router.navigate(['./mentee']);
-            
+
           } else if (this.allUserData[i].userData.role === 'mentor') {
             this.apiService.setMentorDisplayData(formattedUserDataObject);
             this.apiService.setIsMentorDisplayed(true);
