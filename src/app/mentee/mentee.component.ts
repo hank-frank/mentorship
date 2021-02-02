@@ -1,12 +1,15 @@
-import { Component, Input,OnInit } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { HtmlTableDirective } from '../directives/html-table.directive';
+
 
 @Component({
   selector: 'app-mentee',
   templateUrl: './mentee.component.html',
-  styleUrls: [ './mentee.component.scss']
+  styleUrls: ['./mentee.component.scss']
 })
+
 export class MenteeComponent implements OnInit {
   @Input() onboarding: boolean;
   @Input() matched: boolean;
@@ -25,27 +28,30 @@ export class MenteeComponent implements OnInit {
   private currentUserRole: string;
   displayUserData: any[any[any]];
 
-  constructor(private apiService: ApiService) {
-    apiService.getUserData().subscribe((data) => { 
-      this.currentUserData = data; 
-      this.currentUserRole = data.currentUserData.userData.role;   
-    }, error => {console.log(`subscription error: `, error)});
 
-    apiService.getMenteeDisplayData().subscribe((data) => { 
+
+
+  constructor(private apiService: ApiService) {
+    apiService.getUserData().subscribe((data) => {
+      this.currentUserData = data;
+      this.currentUserRole = data.currentUserData.userData.role;
+    }, error => { console.log(`subscription error: `, error) });
+
+    apiService.getMenteeDisplayData().subscribe((data) => {
       this.displayUserData = data;
-      this.updateDisplayData();   
-    }, error => {console.log(`subscription error: `, error)});
+      this.updateDisplayData();
+    }, error => { console.log(`subscription error: `, error) });
   };
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.apiService.retrieveUserData();
-    if ( this.currentUserRole === 'admin'){
+    if (this.currentUserRole === 'admin') {
       this.apiService.retrieveMenteeData();
     }
     this.updateDisplayData();
   };
 
-  updateDisplayData() : void {
+  updateDisplayData(): void {
     this.onboarding = this.displayUserData.currentUserData.userData.onboarding;
     this.matched = this.displayUserData.currentUserData.userData.matched;
     this.introduced = this.displayUserData.currentUserData.userData.introduced;

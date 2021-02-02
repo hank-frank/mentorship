@@ -21,6 +21,7 @@ import { PieChartComponent } from './dashboard/pie-chart/pie-chart.component';
 import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { TableComponent } from './dashboard/table/table.component';
 import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
+import { HtmlTableDirective } from './directives/html-table.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
     HeaderComponent,
     PieChartComponent,
     BarChartComponent,
-    TableComponent
+    TableComponent,
+    HtmlTableDirective
   ],
   imports: [
     BrowserModule,

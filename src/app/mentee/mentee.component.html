@@ -5,24 +5,25 @@
             <h4 mat-card-title>{{userName}}</h4>
             <p mat-card-subtitle>{{userCompany}}</p>
             <p mat-card-subtitle>{{userJobTitle}}</p>
-
         </div>
     </div>
-
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
+        <mat-checkbox (click)="toggleCheck()" [(ngModel)]="onboarding">Completed Onboarding Survey</mat-checkbox>
+    </div>
+    <!-- <div class="container">
+        <h1 hoverer>Hover over me</h1>
+      </div> -->
+    <div class="info-container">
+        <mat-checkbox [(ngModel)]="matched">Matched with a Mentor</mat-checkbox>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="matched">Matched with a Mentor</mat-slide-toggle>
+        <mat-checkbox [(ngModel)]="introduced">Introduced yourself</mat-checkbox>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="introduced">Introduced yourself</mat-slide-toggle>
+        <mat-checkbox [(ngModel)]="schedule">Scheduled a session</mat-checkbox>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="schedule">Scheduled a session</mat-slide-toggle>
-    </div>
-    <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="smart">SMART Goals</mat-slide-toggle>
+        <mat-checkbox [(ngModel)]="smart">SMART Goals</mat-checkbox>
     </div>
 
     <div class="info-container">
