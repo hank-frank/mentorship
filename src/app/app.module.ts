@@ -23,37 +23,37 @@ import { TableComponent } from './dashboard/table/table.component';
 import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    MentorComponent,
-    MenteeComponent,
-    HeaderComponent,
-    PieChartComponent,
-    BarChartComponent,
-    TableComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    MaterialModule,
-    BrowserAnimationsModule,
-    NgxChartsModule,
-    NgxDatatableModule,
-    CommonModule,
-    ToastrModule.forRoot()
-  ],
-  providers: [
-    AppComponent,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MentorshipHttpInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        DashboardComponent,
+        MentorComponent,
+        MenteeComponent,
+        HeaderComponent,
+        PieChartComponent,
+        BarChartComponent,
+        TableComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        NgxChartsModule,
+        NgxDatatableModule,
+        CommonModule,
+        ToastrModule.forRoot()
+    ],
+    providers: [
+        AppComponent,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MentorshipHttpInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
