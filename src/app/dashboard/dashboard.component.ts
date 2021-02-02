@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
     this.apiService.retrieveUserData();
     // console.log(`this.currentUserData:`,this.currentUserData);
 
-    this.allUserData.columnHeaders = ['Name', 'Is Finished'];
+    this.allUserData.columnHeaders = ['Name', 'Completed'];
     this.allUserData.tableTitle = 'All Users';
     this.allUserData.rowColors = ['#264653', '#E76F51'];
 

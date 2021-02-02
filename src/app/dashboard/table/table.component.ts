@@ -40,7 +40,7 @@ export class TableComponent implements OnInit {
       //constructs table row data
       tableRowArr.push({
         name: this.allUserData[i].userData.name,
-        isFinished: this.allUserData[i].userData.isFinished,
+        completed: this.allUserData[i].userData.completed,
         role: this.allUserData[i].userData.role,
         click: '<mat-icon>launch</mat-icon>' 
       });
