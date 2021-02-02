@@ -12,7 +12,7 @@ export interface SingleMentee {
     lifetimeSessions: number;
     lifetimeSessionsPossible: number;
     rating: number;
-    isFinished: boolean;
+    completed: boolean;
     jobTitle: string;
     company: string;
 }

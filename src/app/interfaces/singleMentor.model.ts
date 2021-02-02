@@ -10,7 +10,7 @@ export interface SingleMentor {
     currentStreak: number;
     longestStreak: number;
     rating: number;
-    isFinished: boolean;
+    completed: boolean;
     jobTitle: string;
     company: string;
 }
