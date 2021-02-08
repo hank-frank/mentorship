@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MenteeData } from '../interfaces/menteeData.model';
 import { AdminData } from '../interfaces/adminData.model';
 import { MentorData } from '../interfaces/mentorData.model';
+import { SingleMentee } from '../interfaces/singleMentee.model';
 
 @Component({
     selector: 'app-mentee',
@@ -64,5 +65,28 @@ export class MenteeComponent implements OnInit {
         this.userName = this.displayUserData.currentUserData.userData.name;
         this.userCompany = this.displayUserData.currentUserData.userData.company;
         this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
+    }
+
+    submitMenteeData(event: Event): void {
+        const userDataSnapshot: SingleMentee = {
+            userId: this.displayUserData.currentUserData.userData.userId,
+            name: this.userName,
+            role: this.displayUserData.currentUserData.userData.role,
+            onboarding: this.onboarding,
+            matched: this.matched,
+            introduced: this.introduced,
+            schedule: this.schedule,
+            smart: this.smart,
+            sessions: this.sessions,
+            sessionsPossible: this.sessionsPossible,
+            lifetimeSessions: this.lifetimeSessions,
+            lifetimeSessionsPossible: this.lifetimeSessionsPossible,
+            rating: this.rating,
+            completed: this.displayUserData.currentUserData.userData.completed,
+            jobTitle: this.userJobTitle,
+            company: this.userCompany
+        };
+
+        this.apiService.postMenteeData(userDataSnapshot);
     }
 }

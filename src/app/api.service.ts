@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 
@@ -16,8 +19,10 @@ import { SingleMentor } from './interfaces/singleMentor.model';
 })
 
 export class ApiService {
-    private LOGIN_URL = 'http://localhost:3000/login';
+    private LOGIN_URL = 'http://localhost:3000/dashboard/login';
     private DASHBOARD_URL = 'http://localhost:3000/authorizedDataRequest';
+    private MENTOR_UPDATE_URL = 'http://localhost:3000/updateMentor';
+    private MENTEE_UPDATE_URL = 'http://localhost:3000/updateMentee';
     private currentUserData = new Subject<AdminData | MenteeData | MentorData> ();
     private menteeDisplayUserData = new Subject<MenteeData> ();
     private mentorDisplayUserData = new Subject<MentorData> ();
@@ -122,28 +127,48 @@ export class ApiService {
         this.userRole.next(role);
     }
 
-    public getTheme() : Observable<string> {
-        console.log(`ApiService::getTheme()`)
-        let currentTheme:string;
-        this.themeColor.subscribe(v => currentTheme = v);
-        
-        if(currentTheme === undefined){
-            currentTheme = localStorage.getItem(this.themeLocalStorageKey)
+    public getTheme(): Observable<string> {
+        let currentTheme: string;
+        this.themeColor.subscribe(color => currentTheme = color);
+        if (currentTheme === undefined) {
+            currentTheme = localStorage.getItem(this.themeLocalStorageKey);
             this.themeColor.next(currentTheme);
         }
+
         return this.themeColor.asObservable();
-    };
+    }
 
-    public setTheme(theme: string) : void {
-        console.log(`ApiService::setTheme('${theme})'`);
-
+    public setTheme(theme: string): void {
         this.themeColor.next(theme);
         localStorage.setItem(this.themeLocalStorageKey, theme);
-    };
+    }
 
     public login(username: string, password: string): void {
-    // console.log(`apiservice username: ${username} password: ${password}`);
-        this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials: true }).subscribe((data: AdminData | MentorData | MenteeData) => {
+        // console.log(`apiservice username: ${username} password: ${password}`);
+        // this.httpClient.get(`${this.LOGIN_URL}?username=${username}`, { withCredentials: true }).subscribe((data: AdminData | MentorData | MenteeData) => {
+        //     if (data.currentUserData.userData.userId !== 0) {
+        //         this.setAuthStatusListener(true);
+        //         this.isAuthenticated = true;
+        //         this.setUserRole(data.currentUserData.userData.role);
+        //         this.setUserData(data);
+        //         void this.router.navigate([this.rolemap[data.currentUserData.userData.role] ? this.rolemap[data.currentUserData.userData.role] : './login']);
+        //         localStorage.setItem(this.userLocalStorageKey, JSON.stringify(data));
+        //         localStorage.setItem(this.authLocalStorageKey, 'true');
+        //         if (data.currentUserData.userData.role === 'mentee') {
+        //             this.setMenteeDisplayData(data as MenteeData);
+        //         } else if (data.currentUserData.userData.role === 'mentor') {
+        //             this.setMentorDisplayData(data as MentorData);
+        //         }
+        //     } else {
+        //         this.logout();
+        //     }
+        // });
+        let loginData = {
+            username: username,
+            password: password
+        };
+
+        this.httpClient.post(`${this.LOGIN_URL}`, loginData, { withCredentials: true }).subscribe((data: AdminData | MentorData | MenteeData) => {
             if (data.currentUserData.userData.userId !== 0) {
                 this.setAuthStatusListener(true);
                 this.isAuthenticated = true;
@@ -160,6 +185,7 @@ export class ApiService {
             } else {
                 this.logout();
             }
+            console.log(`userData: `, data);
         });
     }
 
@@ -197,21 +223,45 @@ export class ApiService {
     }
 
     retrieveMenteeData(): void {
-        // console.log('api.service:  retrieveMenteeData()')
         const retreivedUserData = JSON.parse(localStorage.getItem(this.menteeLocalStorageKey)) as MenteeData;
         if (retreivedUserData != null) {
             this.setMenteeDisplayData(retreivedUserData);
         }
-        // return retreivedUserData;
     }
 
     retrieveMentorData(): void {
-        // console.log('api.service:  retrieveMentorData()')
         const retreivedUserData = JSON.parse(localStorage.getItem(this.mentorLocalStorageKey)) as MentorData;
         if (retreivedUserData != null) {
             this.setMentorDisplayData(retreivedUserData);
         }
-        // return retreivedUserData;
+    }
+
+    postMentorData(data: SingleMentor): void {
+        console.log('postingdata: ', data);
+        // url, data, options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json'
+            })
+        };
+
+        this.httpClient.post(this.MENTOR_UPDATE_URL, data, httpOptions).subscribe((response) => {
+            console.log(response);
+        });
+    }
+
+    postMenteeData(data: SingleMentee): void {
+        console.log('postingdata: ', data);
+        // url, data, options
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json'
+            })
+        };
+
+        this.httpClient.post(this.MENTEE_UPDATE_URL, data, httpOptions).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     logout(): void {
@@ -225,4 +275,5 @@ export class ApiService {
         localStorage.removeItem(this.mentorLocalStorageKey);
         void this.router.navigate(['/login']);
     }
+
 }
