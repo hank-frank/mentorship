@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AdminData } from '../interfaces/adminData.model';
 import { MentorData } from '../interfaces/mentorData.model';
 import { MenteeData } from '../interfaces/menteeData.model';
+import { SingleMentor } from '../interfaces/singleMentor.model';
 
 
 @Component({
@@ -62,7 +63,25 @@ export class MentorComponent implements OnInit {
         this.userJobTitle = this.displayUserData.currentUserData.userData.jobTitle;
     }
 
-    testClick(event: Event): void {
-        console.log('event: ', event);
+    submitMentorData(event: Event): void {
+        const userDataSnapshot: SingleMentor = {
+            userId: this.displayUserData.currentUserData.userData.userId,
+            name: this.userName,
+            role: this.displayUserData.currentUserData.userData.role,
+            onboarding: this.onboarding,
+            matched: this.matched,
+            training: this.training,
+            schedule: this.schedule,
+            notes: this.notes,
+            currentStreak: this.currentStreak,
+            longestStreak: this.longestStreak,
+            rating: this.rating,
+            completed: this.displayUserData.currentUserData.userData.completed,
+            jobTitle: this.userJobTitle,
+            company: this.userCompany
+        };
+
+        console.log('event: ', this.onboarding);
+        this.apiService.postMentorData(userDataSnapshot);
     }
 }

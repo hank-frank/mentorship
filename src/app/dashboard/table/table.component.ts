@@ -87,16 +87,8 @@ export class TableComponent implements OnInit {
 
         if (event.type === 'click'){
             const clickedUserName = event.row.name;
-            console.log('clicked table row: ', clickedUserName, this.allUserData[0]);
             for (let i = 0; i < this.allUserData.length; i++) {
                 if (this.allUserData[i].userData.name === clickedUserName) {
-                    console.log('table matched clicked userData: ', this.allUserData[i]);
-
-                    // let formattedUserDataObject: MentorData | MenteeData = ({
-                    //     currentUserData: this.allUserData[i],
-                    // });
-
-
                     if (this.allUserData[i].userData.role === 'mentee') {
                         const formattedUserDataObject = ({
                             currentUserData: this.allUserData[i]
@@ -104,7 +96,6 @@ export class TableComponent implements OnInit {
                         this.apiService.setMenteeDisplayData(formattedUserDataObject as MenteeData);
                         this.apiService.setIsMenteeDisplayed(true);
                         // this.router.navigate(['./mentee']);
-
 
                     } else if (this.allUserData[i].userData.role === 'mentor') {
                         const formattedUserDataObject = ({

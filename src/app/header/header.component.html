@@ -60,7 +60,7 @@
                 <button mat-button class="link-button" routerLink="/mentee">Mentee</button>
             </div>
             <ng-template #menteeeElse>
-                <button mat-button class="link-button dead-link">MenteeDead</button>
+                <button mat-button class="link-button dead-link">Mentee</button>
             </ng-template>
             <div *ngIf="isAuthenticated === true; else loginElse">
                 <button mat-button class="link-button" (click)="logout()">Logout</button>

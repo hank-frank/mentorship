@@ -18,8 +18,8 @@ import { AdminData } from '../interfaces/adminData.model';
 
 export class HeaderComponent implements OnInit {
     @Input() currentUserData: MentorData | MenteeData | AdminData;
-    @Input() currentUserRole: string;
     @Input() isAuthenticated: boolean;
+    public currentUserRole: string;
     public isMenuOpen = false;
     private darkTheme = true;
     private theme: 'dark' | 'light' = 'dark';
@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
             this.currentUserRole = role;
         });
 
-        apiService.getTheme().subscribe((theme) => {
+        apiService.getTheme().subscribe((theme: string) => {
             if (theme === 'dark' || theme === 'light') {
                 this.theme = theme;
                 this.darkTheme = theme === 'dark' ? true : false;

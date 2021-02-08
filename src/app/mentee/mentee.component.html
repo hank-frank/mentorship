@@ -10,19 +10,19 @@
     </div>
 
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
+        <mat-slide-toggle (change)="submitMenteeData($event)" [(ngModel)]="onboarding">Completed Onboarding Survey</mat-slide-toggle>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="matched">Matched with a Mentor</mat-slide-toggle>
+        <mat-slide-toggle (change)="submitMenteeData($event)" [(ngModel)]="matched">Matched with a Mentor</mat-slide-toggle>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="introduced">Introduced yourself</mat-slide-toggle>
+        <mat-slide-toggle (change)="submitMenteeData($event)" [(ngModel)]="introduced">Introduced yourself</mat-slide-toggle>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="schedule">Scheduled a session</mat-slide-toggle>
+        <mat-slide-toggle (change)="submitMenteeData($event)" [(ngModel)]="schedule">Scheduled a session</mat-slide-toggle>
     </div>
     <div class="info-container">
-        <mat-slide-toggle [(ngModel)]="smart">SMART Goals</mat-slide-toggle>
+        <mat-slide-toggle (change)="submitMenteeData($event)" [(ngModel)]="smart">SMART Goals</mat-slide-toggle>
     </div>
 
     <div class="info-container">
