@@ -12,6 +12,8 @@ import { catchError, finalize, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from './api.service';
 
+
+
 @Injectable()
 export class MentorshipHttpInterceptor implements HttpInterceptor {
     constructor(private toastr: ToastrService, private apiService: ApiService) { }
@@ -32,7 +34,14 @@ export class MentorshipHttpInterceptor implements HttpInterceptor {
                 }),
                 finalize(() => {
                     const msg = `"${req.urlWithParams}"`;
+                
+                    
+                    
                     console.log(msg);
+
+            
+
+
                 })
             );
     }

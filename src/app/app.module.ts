@@ -22,6 +22,7 @@ import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { TableComponent } from './dashboard/table/table.component';
 import { MentorshipHttpInterceptor } from './mentorship-http-interceptor';
 
+
 @NgModule({
     declarations: [
         AppComponent,

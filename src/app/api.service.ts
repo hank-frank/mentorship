@@ -13,6 +13,7 @@ import { MentorData } from './interfaces/mentorData.model';
 import { AdminData } from './interfaces/adminData.model';
 import { SingleMentee } from './interfaces/singleMentee.model';
 import { SingleMentor } from './interfaces/singleMentor.model';
+import { loggers } from 'winston';
 
 @Injectable({
     providedIn: 'root'
@@ -23,9 +24,9 @@ export class ApiService {
     private DASHBOARD_URL = 'http://localhost:3000/authorizedDataRequest';
     private MENTOR_UPDATE_URL = 'http://localhost:3000/updateMentor';
     private MENTEE_UPDATE_URL = 'http://localhost:3000/updateMentee';
-    private currentUserData = new Subject<AdminData | MenteeData | MentorData> ();
-    private menteeDisplayUserData = new Subject<MenteeData> ();
-    private mentorDisplayUserData = new Subject<MentorData> ();
+    private currentUserData = new Subject<AdminData | MenteeData | MentorData>();
+    private menteeDisplayUserData = new Subject<MenteeData>();
+    private mentorDisplayUserData = new Subject<MentorData>();
     private userRole = new Subject<string>(); // for header
     private isLogInErrorMessage = new Subject<boolean>(); // for header
     private authStatusListener = new Subject<boolean>();
@@ -44,6 +45,7 @@ export class ApiService {
         mentee: './mentee'
     };
 
+
     constructor(
         private httpClient: HttpClient,
         private router: Router) {
@@ -60,7 +62,7 @@ export class ApiService {
         return this.isAuthenticated;
     }
 
-    getAuthStatusListener(): Observable<boolean>{
+    getAuthStatusListener(): Observable<boolean> {
         return this.authStatusListener.asObservable();
     }
 
@@ -68,7 +70,7 @@ export class ApiService {
         this.authStatusListener.next(status);
     }
 
-    getIsLogInErrorMessage(): Observable<boolean>{
+    getIsLogInErrorMessage(): Observable<boolean> {
         return this.isLogInErrorMessage.asObservable();
     }
 
@@ -76,7 +78,7 @@ export class ApiService {
         this.isLogInErrorMessage.next(status);
     }
 
-    getIsMenteeDisplayed(): Observable<boolean>{
+    getIsMenteeDisplayed(): Observable<boolean> {
         return this.isMenteeDisplayed.asObservable();
     }
 
@@ -163,7 +165,7 @@ export class ApiService {
         //         this.logout();
         //     }
         // });
-        
+
         let loginData = {
             username: username,
             password: password
@@ -186,7 +188,11 @@ export class ApiService {
             } else {
                 this.logout();
             }
-            console.log(`userData: `, data);
+            console.log(`userData: `, data); 
+
+           
+
+
         });
     }
 
@@ -242,7 +248,7 @@ export class ApiService {
         // url, data, options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Content-Type':  'application/json'
+                'Content-Type': 'application/json'
             })
         };
 
@@ -256,7 +262,7 @@ export class ApiService {
         // url, data, options
         const httpOptions = {
             headers: new HttpHeaders({
-                'Content-Type':  'application/json'
+                'Content-Type': 'application/json'
             })
         };
 
