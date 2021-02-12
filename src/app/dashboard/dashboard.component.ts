@@ -135,8 +135,8 @@ export class DashboardComponent implements OnInit {
             showLabels: true,
             isDoughnut: true,
             legendPosition: 'below',
-            colors: ['#264653', '#2A9D8F', '#E9C46A'],
-            title: 'Mentors'
+            colors: ['#e76f51', '#F4A260', '#E9C46A'],
+            title: 'Mentees'
         };
     }
 

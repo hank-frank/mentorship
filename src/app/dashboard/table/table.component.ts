@@ -11,8 +11,6 @@ import { DashboardComponent } from '../dashboard.component';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
-
-
 import { MenteeData } from '../../interfaces/menteeData.model';
 import { MentorData } from '../../interfaces/mentorData.model';
 import { TableUsers } from 'src/app/interfaces/tableAllUsers.model';
@@ -35,7 +33,6 @@ export class TableComponent implements OnInit {
     theme: 'dark' | 'light' = 'dark';
     tableTitle = 'All Users';
 
-
     constructor(
         private apiService: ApiService,
         private router: Router,
@@ -50,6 +47,7 @@ export class TableComponent implements OnInit {
 
     ngOnInit(): void {
         this.allUserData = this.incommingAllUserData;
+        console.log(`all user data array: `, this.allUserData);
         const tableRowArr = [];
         for (let i = 0; i < this.allUserData.length; i++) {
             // constructs table row data
@@ -86,6 +84,7 @@ export class TableComponent implements OnInit {
     // This click event works, finds the user data and sends it to the method in apiService, for some reason though in teh mentor/mentee components the data gets lost
 
         if (event.type === 'click'){
+            console.log(`click`);
             const clickedUserName = event.row.name;
             for (let i = 0; i < this.allUserData.length; i++) {
                 if (this.allUserData[i].userData.name === clickedUserName) {

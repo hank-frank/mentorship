@@ -21,8 +21,7 @@ import { SingleMentor } from './interfaces/singleMentor.model';
 export class ApiService {
     private LOGIN_URL = 'http://localhost:3000/dashboard/login';
     private DASHBOARD_URL = 'http://localhost:3000/authorizedDataRequest';
-    private MENTOR_UPDATE_URL = 'http://localhost:3000/updateMentor';
-    private MENTEE_UPDATE_URL = 'http://localhost:3000/updateMentee';
+    private USER_UPDATE_URL = 'http://localhost:3000/dashboard/updateUser';
     private currentUserData = new Subject<AdminData | MenteeData | MentorData> ();
     private menteeDisplayUserData = new Subject<MenteeData> ();
     private mentorDisplayUserData = new Subject<MentorData> ();
@@ -246,7 +245,7 @@ export class ApiService {
             })
         };
 
-        this.httpClient.post(this.MENTOR_UPDATE_URL, data, httpOptions).subscribe((response) => {
+        this.httpClient.post(this.USER_UPDATE_URL, data, httpOptions).subscribe((response: SingleMentor) => {
             console.log(response);
         });
     }
@@ -260,7 +259,7 @@ export class ApiService {
             })
         };
 
-        this.httpClient.post(this.MENTEE_UPDATE_URL, data, httpOptions).subscribe((response) => {
+        this.httpClient.post(this.USER_UPDATE_URL, data, httpOptions).subscribe((response: SingleMentee) => {
             console.log(response);
         });
     }
