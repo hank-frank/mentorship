@@ -39,6 +39,8 @@ export class ApiService {
     private themeLocalStorageKey = 'theme';
     private rolemap = {
         admin: './dashboard',
+        orgadmin: './dashboard',
+        orgowner: './dashboard',
         mentor: './mentor',
         mentee: './mentee'
     };
@@ -174,6 +176,7 @@ export class ApiService {
                 this.isAuthenticated = true;
                 this.setUserRole(data.currentUserData.userData.role);
                 this.setUserData(data);
+                console.log(`this users role: `, data.currentUserData.userData.role);
                 void this.router.navigate([this.rolemap[data.currentUserData.userData.role] ? this.rolemap[data.currentUserData.userData.role] : './login']);
                 localStorage.setItem(this.userLocalStorageKey, JSON.stringify(data));
                 localStorage.setItem(this.authLocalStorageKey, 'true');
