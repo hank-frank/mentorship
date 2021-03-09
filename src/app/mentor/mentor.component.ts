@@ -43,7 +43,10 @@ export class MentorComponent implements OnInit {
 
     ngOnInit(): void {
         this.apiService.retrieveUserData();
-        if ( this.currentUserRole === 'admin'){
+        if ( this.currentUserRole === 'admin' ||
+        this.currentUserRole === 'orgadmin' ||
+        this.currentUserRole === 'orgowner'
+        ){
             this.apiService.retrieveMentorData();
         }
         this.updateDisplayData();
